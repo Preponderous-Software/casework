@@ -5,11 +5,13 @@
   "scripts": {
     "test": "node --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json"
+    "build": "tsc -p tsconfig.build.json",
+    "shots": "node tools/shots.cjs"
   },
   "devDependencies": {
     "typescript": "5.8.3",
-    "@types/node": "22.15.30"
+    "@types/node": "22.15.30",
+    "playwright": "1.61.1"
   },
   "license": "MIT"
 }

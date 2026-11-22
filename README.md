@@ -8,6 +8,23 @@ window that scores best when it is both right and tight.
 > on a body, learn what each one means, set a time-of-death window and sign it. A 3D exam room is in
 > progress.
 
+<table>
+  <tr>
+    <td><img src="docs/media/phone-1-findings.png" alt="A drill body's findings as tiles: body temperature, room, stiffness, skin on the back and stomach contents, each with a Learn link" width="200"></td>
+    <td><img src="docs/media/phone-2-lesson.png" alt="A one-question lesson on algor mortis, answered correctly, with an explanation and sources" width="200"></td>
+    <td><img src="docs/media/phone-3-evidence.png" alt="The evidence chart: cooling, rigor, livor and stomach bars, their overlap, and the player's window sliders" width="200"></td>
+    <td><img src="docs/media/phone-4-debrief.png" alt="The debrief: right and tight, 3 of 3 points, with what each bar said" width="200"></td>
+  </tr>
+  <tr>
+    <td>1. Read the body</td>
+    <td>2. Learn what a finding means</td>
+    <td>3. Weigh the evidence</td>
+    <td>4. Sign and see the truth</td>
+  </tr>
+</table>
+
+Each skill's colour shows how well you know it: amber for novice (a wider bar), teal for practiced, green for mastered.
+
 ## How it plays (planned)
 
 - **Examine:** spend shift hours on procedures (scene, external exam, autopsy, toxicology) and tap
@@ -24,6 +41,8 @@ respectful line about each person.
 ## Design
 
 - [docs/design.md](docs/design.md): core loop, decisions and milestones.
+- Screenshots are made by `npm run shots` (see `tools/shots.cjs`), which plays one drill with a
+  fixed seed (`?seed=99`) at phone and desktop sizes and fails on console errors or overflow.
 - Architecture: ports and adapters. `src/kernel` (skills, lessons, review: reusable by other
   games), `src/casework` (the game rules), `src/adapters` (web UI, storage, Strata 3D). The layer
   rule is enforced by `tests/layers.test.ts`.

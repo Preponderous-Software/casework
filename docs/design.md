@@ -11,6 +11,17 @@ Nested loops:
 | Shift | 15–20 min | Short spaced review, then 2–3 cases against an 8-hour clock and a lab budget. Toxicology returns next shift, so "pending" is a real choice. |
 | Career | weeks | Accuracy builds reputation; reputation unlocks equipment; equipment adds procedures, findings and skills. |
 
+## What the drill looks like
+
+The milestone-1 drill on a desktop browser: the evidence bars from four skills, their overlap (dashed),
+and the player's window (red). Rigor is a novice skill here, so its bar is wider.
+
+![Evidence chart on desktop](media/desktop-3-evidence.png)
+
+After signing, the real time appears as a line and the debrief explains each bar:
+
+![Debrief on desktop](media/desktop-4-debrief.png)
+
 ## Rules
 
 1. Every interpretation is a lesson-backed decision: findings are facts, interpretations need skills.
