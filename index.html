@@ -46,7 +46,8 @@
   .round { display: grid; gap: 14px; }
   .eyebrow { font: 600 0.75rem/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mark); }
   .prompt { font-weight: 700; font-size: 1.05rem; }
-  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+  .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  @media (max-width: 360px) { .tiles { grid-template-columns: 1fr; } }
   .tile { font: inherit; color: var(--ink); text-align: left; cursor: pointer; display: grid; grid-template-columns: 40px 1fr; grid-template-rows: auto auto; gap: 4px 10px; align-items: start; padding: 12px; border-radius: 12px; border: 1px solid var(--rule); background: var(--card); min-height: 88px; }
   .tile:hover:not(:disabled) { border-color: var(--accent); }
   .tile .ic { grid-row: span 2; width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }

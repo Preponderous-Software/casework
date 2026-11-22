@@ -273,7 +273,7 @@ export function startDrill(root: HTMLElement, ports: Ports, notice?: string): vo
   }
 
   function chartSvg(ev: Evidence[]): string {
-    const W = 360, left = 76, right = 10, top = 14, rowH = 26;
+    const W = 360, left = 76, right = 24, top = 14, rowH = 26;
     const rows = Math.max(ev.length, 1);
     const H = top + rows * rowH + 50;
     const x = (hoursBefore: number) => left + ((SPAN - hoursBefore) / SPAN) * (W - left - right);
