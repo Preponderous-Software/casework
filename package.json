@@ -6,7 +6,9 @@
     "test": "node --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
     "build": "tsc -p tsconfig.build.json",
-    "shots": "node tools/shots.cjs"
+    "shots": "node tools/shots.cjs",
+    "play": "node src/adapters/cli/play.ts",
+    "shots:case": "node tools/case-shots.cjs"
   },
   "devDependencies": {
     "typescript": "5.8.3",

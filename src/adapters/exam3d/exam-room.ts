@@ -23,7 +23,7 @@ export interface ExamView {
   turn(): void;
 }
 
-interface Dom {
+export interface Dom {
   canvas: HTMLCanvasElement;
   last: HTMLElement;
   turn: HTMLButtonElement;
@@ -36,7 +36,13 @@ function describe(e: RegionEvent): string {
   return `{ region: "${e.region}", pose: "${e.pose}", via: "${e.via}" }`;
 }
 
-export function createExamView(dom: Dom): ExamView {
+export interface ExamOptions {
+  /** Folder holding tangle-engine.{js,wasm}, relative to the page. */
+  engineBase?: string;
+}
+
+export function createExamView(dom: Dom, opts: ExamOptions = {}): ExamView {
+  const base = opts.engineBase ?? "../engine";
   const events = new RegionEvents();
   const log: RegionEvent[] = [];
   let mode: "3d" | "list" | "loading" = "loading";
@@ -161,7 +167,7 @@ export function createExamView(dom: Dom): ExamView {
     if (!L.hasWebGL2()) return showFallback("This browser has no WebGL 2, so the 3D exam room cannot start.");
     let mod;
     try {
-      mod = await L.load({ script: "../engine/tangle-engine.js", factory: "createTangleEngine", wasm: "../engine/tangle-engine.wasm", title: "the exam room" });
+      mod = await L.load({ script: `${base}/tangle-engine.js`, factory: "createTangleEngine", wasm: `${base}/tangle-engine.wasm`, title: "the exam room" });
     } catch (e) {
       return showFallback(`The 3D engine could not start (${(e as { code?: string }).code ?? String(e)}).`);
     }
@@ -256,13 +262,3 @@ export function createExamView(dom: Dom): ExamView {
   });
   return view;
 }
-
-const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
-createExamView({
-  canvas: $<HTMLCanvasElement>("view"),
-  last: $("last"),
-  turn: $<HTMLButtonElement>("turn"),
-  regions: $("regions"),
-  fallback: $("fallback"),
-  status: $("status"),
-});
