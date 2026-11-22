@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { rayBox, rayCapsule, raySphere, rayShape, v3, type Vec3 } from "../src/adapters/exam3d/geometry.ts";
-import { bodyTransform, pickRegion, poseOf, REGION_ANCHORS, TABLE_TOP, torsoRegion } from "../src/adapters/exam3d/body.ts";
+import { anchorAt, bodyTransform, pickRegion, poseOf, posedParts, TABLE_TOP, torsoRegion } from "../src/adapters/exam3d/body.ts";
 import { clampOrbit, eyeOf, LIMITS, project, rayThrough, type Orbit } from "../src/adapters/exam3d/camera.ts";
 import { cssToDrawable, cssToNdc, drawableSize, drawableToNdc, effectiveDpr, ndcToCss, pointerScale } from "../src/adapters/exam3d/pointer.ts";
 import { MeshBuilder } from "../src/adapters/exam3d/mesh.ts";
@@ -88,13 +88,24 @@ test("the body rests on the table in both poses and its transform round-trips", 
     near(tf.toWorld([0, turn ? 0.11 : -0.11, 0])[1], TABLE_TOP, 1e-9);
   }
   assert.equal(poseOf(0), "supine");
+});
+
+test("limbs rest on the table face up and face down", () => {
+  for (const turn of [0, Math.PI]) {
+    const tf = bodyTransform(turn);
+    for (const part of posedParts(turn)) {
+      if (part.shape.kind !== "capsule" || !/leg|arm/.test(part.name)) continue;
+      const lowest = Math.min(tf.toWorld(part.shape.a)[1], tf.toWorld(part.shape.b)[1]) - part.shape.r;
+      near(lowest, TABLE_TOP, 1e-9);
+    }
+  }
   assert.equal(poseOf(Math.PI), "prone");
 });
 
 test("every region anchor picks its own region when tapped from a camera above it", () => {
   for (const region of REGIONS) {
     const turn = region === "back" ? Math.PI : 0;
-    const p = bodyTransform(turn).toWorld(REGION_ANCHORS[region]);
+    const p = anchorAt(region, turn);
     const orbit: Orbit = { yaw: -1.25, pitch: 1.2, dist: 2.2, centre: p };
     const ray = rayThrough(orbit, 45, 1.6, 0, 0);
     assert.equal(pickRegion(ray, turn)?.region, region, region);

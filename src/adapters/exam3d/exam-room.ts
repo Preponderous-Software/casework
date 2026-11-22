@@ -4,7 +4,7 @@
 //
 // Game code only needs createExamView(...).events.onRegion(cb).
 
-import { bodyTransform, pickRegion, poseOf, REGION_ANCHORS, type Hit } from "./body.ts";
+import { anchorAt, pickRegion, poseOf, type Hit } from "./body.ts";
 import { clampOrbit, eyeOf, fitFov, LIMITS, project, rayThrough, type Orbit } from "./camera.ts";
 import { Engine, BACKGROUND, MESH_UNLIT, type Kit } from "./engine.ts";
 import { REGION_LABELS, REGIONS, RegionEvents, type Pose, type Region, type RegionEvent } from "./events.ts";
@@ -13,7 +13,7 @@ import { buildBody, buildFurniture, buildLampFace, buildRoom, lights } from "./s
 
 const SLOT = { room: 1, furniture: 2, lamp: 3, body: 10 } as const;
 const TURN_SECONDS = 0.9;
-const FLASH_MS = 900;
+const FLASH_MS = Number(new URLSearchParams(location.search).get("flashms")) || 900; // tools hold it longer
 const CENTRE = [-0.1, 0.98, 0] as const;
 
 export interface ExamView {
@@ -48,6 +48,8 @@ export function createExamView(dom: Dom): ExamView {
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const pose = (): Pose => poseOf(turnTarget);
+  // the roll as drawn: eased so it starts and stops softly
+  const eased = () => Math.PI * (0.5 - 0.5 * Math.cos(turnNow));
 
   function orbit(): Orbit {
     if (!kit) return { yaw: 0, pitch: 0.7, dist: 2.5, centre: CENTRE };
@@ -104,7 +106,7 @@ export function createExamView(dom: Dom): ExamView {
 
   function pick(x: number, y: number): Hit | null {
     const [nx, ny] = cssToNdc(x, y, dom.canvas.clientWidth, dom.canvas.clientHeight);
-    return pickRegion(rayThrough(orbit(), fov, aspect(), nx, ny), turnNow);
+    return pickRegion(rayThrough(orbit(), fov, aspect(), nx, ny), eased());
   }
 
   function frame(_t: number, now: number, dt: number): void {
@@ -123,9 +125,7 @@ export function createExamView(dom: Dom): ExamView {
       for (const b of Array.from(dom.regions.querySelectorAll("button.lit"))) b.classList.remove("lit");
     }
     if (bodyDirty) {
-      // ease the roll so it starts and stops softly
-      const eased = Math.PI * (0.5 - 0.5 * Math.cos(turnNow));
-      engine.mesh(SLOT.body, buildBody(eased, flash?.region ?? null));
+      engine.mesh(SLOT.body, buildBody(eased(), flash?.region ?? null));
       if (flash?.point) engine.points([[...flash.point, 22, 0, 0.36, 0.86, 0.92, 0.95]]);
       bodyDirty = false;
     }
@@ -146,8 +146,7 @@ export function createExamView(dom: Dom): ExamView {
 
   // Where a region's anchor is on screen right now, in client pixels (for tools and tests).
   function anchorClient(region: Region): { x: number; y: number } | null {
-    const tf = bodyTransform(Math.PI * (0.5 - 0.5 * Math.cos(turnNow)));
-    const q = project(orbit(), fov, aspect(), tf.toWorld(REGION_ANCHORS[region]));
+    const q = project(orbit(), fov, aspect(), anchorAt(region, eased()));
     if (!q) return null;
     const [x, y] = ndcToCss(q[0], q[1], dom.canvas.clientWidth, dom.canvas.clientHeight);
     const r = dom.canvas.getBoundingClientRect();
@@ -231,6 +230,9 @@ export function createExamView(dom: Dom): ExamView {
     log,
     get mode() {
       return mode;
+    },
+    get flashing() {
+      return flash != null;
     },
     get turning() {
       return turnNow !== turnTarget;

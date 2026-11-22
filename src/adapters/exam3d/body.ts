@@ -12,6 +12,9 @@ export interface Part {
   name: string;
   shape: Extract<Shape, { kind: "sphere" | "capsule" }> | Extract<Shape, { kind: "box" }>;
   region: (p: Vec3) => Region; // p in the body frame, on the part's surface
+  // Limbs rest on the table in either pose: a limb whose centre sits restY below the torso's
+  // centre face up sits the same distance below it (towards the table) face down. See posedParts.
+  restY?: number;
 }
 
 const fixed = (r: Region) => () => r;
@@ -23,6 +26,8 @@ export function torsoRegion(p: Vec3): Region {
   return p[0] > 0.12 ? "chest" : "abdomen";
 }
 
+const ARM_Y = -0.067, HAND_Y = -0.075, LEG_Y = -0.047; // each limb's bottom touches the table
+
 export const PARTS: readonly Part[] = [
   { name: "head", shape: { kind: "sphere", c: [0.75, -0.005, 0], r: 0.1, scale: [1.05, 1, 0.9] }, region: fixed("head") },
   { name: "jaw", shape: { kind: "capsule", a: [0.69, 0.02, -0.035], b: [0.69, 0.02, 0.035], r: 0.05 }, region: fixed("jaw") },
@@ -31,28 +36,50 @@ export const PARTS: readonly Part[] = [
   ...[1, -1].flatMap((s): Part[] => [
     {
       name: s > 0 ? "left upper arm" : "right upper arm",
-      shape: { kind: "capsule", a: [0.38, -0.04, 0.245 * s], b: [-0.17, -0.045, 0.285 * s], r: 0.043 },
+      shape: { kind: "capsule", a: [0.38, ARM_Y, 0.245 * s], b: [-0.17, ARM_Y, 0.285 * s], r: 0.043 },
       region: (p) => side(p[2], "left-arm", "right-arm"),
+      restY: ARM_Y,
     },
     {
       name: s > 0 ? "left hand" : "right hand",
-      shape: { kind: "sphere", c: [-0.21 / 1.3, -0.05 / 0.7, 0.29 * s], r: 0.05, scale: [1.3, 0.7, 1] },
+      shape: { kind: "sphere", c: [-0.21 / 1.3, HAND_Y / 0.7, 0.29 * s], r: 0.05, scale: [1.3, 0.7, 1] },
       region: (p) => side(p[2], "left-arm", "right-arm"),
+      restY: HAND_Y,
     },
     {
       name: s > 0 ? "left leg" : "right leg",
-      shape: { kind: "capsule", a: [-0.28, -0.03, 0.095 * s], b: [-0.93, -0.04, 0.115 * s], r: 0.063 },
+      shape: { kind: "capsule", a: [-0.28, LEG_Y, 0.095 * s], b: [-0.93, LEG_Y, 0.115 * s], r: 0.063 },
       region: (p) => side(p[2], "left-leg", "right-leg"),
+      restY: LEG_Y,
     },
     {
       name: s > 0 ? "left foot" : "right foot",
-      shape: { kind: "box", lo: [-1.0, -0.09, 0.115 * s - 0.04], hi: [-0.95, 0.07, 0.115 * s + 0.04] },
+      shape: { kind: "box", lo: [-1.0, -0.11, 0.115 * s - 0.04], hi: [-0.95, 0.05, 0.115 * s + 0.04] },
       region: (p) => side(p[2], "left-leg", "right-leg"),
+      restY: -0.03,
     },
   ]),
 ];
 
-// A point on each region's surface (body frame), facing the camera in the pose that shows it.
+function moveShape(s: Part["shape"], dy: number): Part["shape"] {
+  const d = (p: Vec3, k = 1): Vec3 => [p[0], p[1] + dy / k, p[2]];
+  if (s.kind === "box") return { ...s, lo: d(s.lo), hi: d(s.hi) };
+  const ky = s.scale?.[1] ?? 1;
+  return s.kind === "sphere" ? { ...s, c: d(s.c, ky) } : { ...s, a: d(s.a, ky), b: d(s.b, ky) };
+}
+
+// How far a limb resting restY below the torso's centre moves (body frame) at a turn angle.
+export function settle(restY: number, turn: number): number {
+  return restY * (Math.cos(turn) - 1);
+}
+
+// The parts as they lie at a turn angle (body frame): limbs settled onto the table.
+export function posedParts(turn: number, parts: readonly Part[] = PARTS): Part[] {
+  return parts.map((p) => (p.restY == null ? p : { ...p, shape: moveShape(p.shape, settle(p.restY, turn)) }));
+}
+
+// A point on (or inside) each region, in the body frame face up; a tap ray aimed at it from the
+// side that shows the region meets that region first. Use anchorAt for the posed point.
 export const REGION_ANCHORS: Record<Region, Vec3> = {
   head: [0.79, 0.09, 0],
   jaw: [0.69, 0.07, 0],
@@ -60,11 +87,19 @@ export const REGION_ANCHORS: Record<Region, Vec3> = {
   chest: [0.26, 0.11, 0],
   abdomen: [-0.05, 0.11, 0],
   back: [0.1, -0.11, 0],
-  "left-arm": [0.12, 0.0, 0.265],
-  "right-arm": [0.12, 0.0, -0.265],
-  "left-leg": [-0.6, 0.03, 0.105],
-  "right-leg": [-0.6, 0.03, -0.105],
+  "left-arm": [0.12, ARM_Y, 0.265],
+  "right-arm": [0.12, ARM_Y, -0.265],
+  "left-leg": [-0.6, LEG_Y, 0.105],
+  "right-leg": [-0.6, LEG_Y, -0.105],
 };
+
+const LIMB_REST: Partial<Record<Region, number>> = { "left-arm": ARM_Y, "right-arm": ARM_Y, "left-leg": LEG_Y, "right-leg": LEG_Y };
+
+// A region's anchor in the room at a turn angle.
+export function anchorAt(region: Region, turn: number): Vec3 {
+  const a = REGION_ANCHORS[region], rest = LIMB_REST[region];
+  return bodyTransform(turn).toWorld(rest == null ? a : [a[0], a[1] + settle(rest, turn), a[2]]);
+}
 
 // ------------------------------------------------------------------ the table and the turn
 
@@ -98,7 +133,7 @@ export interface Hit {
 
 // The region a room-space ray touches first, or null. The table top blocks the ray, so the back
 // cannot be tapped through the table while the body lies face up.
-export function pickRegion(ray: Ray, turn: number, parts: readonly Part[] = PARTS): Hit | null {
+export function pickRegion(ray: Ray, turn: number, parts: readonly Part[] = posedParts(turn)): Hit | null {
   const tf = bodyTransform(turn);
   const local: Ray = { origin: tf.toLocal(ray.origin), dir: tf.dirToLocal(ray.dir) };
   let best: { t: number; part: Part } | null = null;

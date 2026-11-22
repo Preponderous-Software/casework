@@ -1,12 +1,13 @@
 // The exam room's geometry and lights as plain data. Pure: no DOM, no engine.
 // Clinical and non-graphic: a faceless mannequin in a soft neutral palette.
 
-import { bodyTransform, PARTS, TABLE, TABLE_TOP } from "./body.ts";
+import { bodyTransform, posedParts, TABLE, TABLE_TOP } from "./body.ts";
 import type { Region } from "./events.ts";
 import { MeshBuilder, type Rgb } from "./mesh.ts";
 
 export const PALETTE = {
   skin: [0.8, 0.77, 0.73] as Rgb,
+  skinBack: [0.7, 0.68, 0.66] as Rgb, // a cooler, darker back so face down reads at a glance
   highlight: [0.36, 0.74, 0.8] as Rgb,
   steel: [0.72, 0.75, 0.78] as Rgb,
   steelDark: [0.42, 0.45, 0.48] as Rgb,
@@ -70,8 +71,11 @@ export function buildLampFace(): MeshBuilder {
 // The mannequin, turned by `turn` (0 face up, PI face down), with one region optionally lit.
 export function buildBody(turn: number, highlight: Region | null): MeshBuilder {
   const m = new MeshBuilder();
-  for (const part of PARTS) {
-    const color = (p: readonly [number, number, number]) => (highlight && part.region(p) === highlight ? PALETTE.highlight : PALETTE.skin);
+  for (const part of posedParts(turn)) {
+    const color = (p: readonly [number, number, number]) => {
+      const r = part.region(p);
+      return highlight && r === highlight ? PALETTE.highlight : r === "back" ? PALETTE.skinBack : PALETTE.skin;
+    };
     if (part.shape.kind === "box") {
       const c = color(part.shape.lo);
       m.box(part.shape.lo, part.shape.hi, c);
