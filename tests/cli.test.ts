@@ -25,7 +25,7 @@ test("the basement case, played in the terminal, catches the timeline trap", () 
   assert.match(r.stdout, /Lesson: Head injury/);
   assert.match(r.stdout, /Signed\. 11\/12/);
   assert.match(r.stdout, /link call → time didn't hold/);
-  assert.match(r.stdout, /Daniel Ortiz/);
+  assert.match(r.stdout, /Tomás Ortiz/);
 });
 
 test("an unknown case lists the real ones", () => {

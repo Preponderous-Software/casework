@@ -34,6 +34,6 @@
     { "id": "ascvd", "label": "Atherosclerotic coronary artery disease" }
   ],
   "truth": { "hoursDead": 6, "cause": "blows", "manner": "homicide", "partialManner": { "pending": 1, "undetermined": 1 }, "par": ["scene", "external", "autopsy", "tox"] },
-  "person": "Daniel Ortiz, 45, a high-school chemistry teacher.",
+  "person": "Tomás Ortiz, 45, a high-school chemistry teacher.",
   "story": "He died at about 17:10, some six hours before the call, from blows to the top of his head. The body's timeline and injuries didn't match the account of a fall an hour earlier. Homicide on a death certificate means death at the hands of another person; it is a medical finding, not a legal verdict, and what happened next is for the police and the courts."
 }
