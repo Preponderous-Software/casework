@@ -5,6 +5,9 @@ import { startCaseApp } from "./case-app.ts";
 import { loadPack } from "./content.ts";
 import { loadCaseProgress, loadProfile, saveCaseProgress, saveProfile } from "./storage.ts";
 import { today } from "./clock.ts";
+import { mountThemeSwitch } from "./theme.ts";
+
+mountThemeSwitch();
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 

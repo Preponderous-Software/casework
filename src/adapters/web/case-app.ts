@@ -129,9 +129,12 @@ export function startCaseApp(ports: CasePorts): void {
 
   function renderTop() {
     top.innerHTML = "";
-    const h = el("header", { class: "top" });
-    h.append(el("a", { href: "./", class: "back" }, "← All cases"), el("h1", {}, def.title), el("p", { class: "sub" }, def.intake));
-    top.append(h);
+    const head = document.getElementById("head");
+    if (head && !head.firstChild) {
+      const h = el("header", { class: "top" });
+      h.append(el("a", { href: "./", class: "back" }, "← All cases"), el("h1", {}, def.title), el("p", { class: "sub" }, def.intake));
+      head.append(h);
+    }
 
     const intro = el("section", { class: "card" });
     intro.append(el("p", { class: "eyebrow" }, `Found at ${clock(0)}`), el("p", {}, def.context));
