@@ -11,6 +11,7 @@
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg);
     font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
   body { display: grid; grid-template-rows: auto 1fr auto; height: 100dvh; overflow: hidden; }
@@ -19,7 +20,7 @@
   header h1 { font-size: 16px; margin: 0; font-weight: 600; }
   #last { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--accent); }
   #status { font-size: 13px; color: var(--muted); min-height: 1.2em; }
-  .stage { position: relative; min-height: 0; }
+  .stage { position: relative; min-height: 0; overflow: auto; }
   canvas#view { display: block; width: 100%; height: 100%; touch-action: none; outline: none; cursor: grab; }
   canvas#view.dragging { cursor: grabbing; }
   #fallback { padding: 24px 16px; max-width: 560px; }
