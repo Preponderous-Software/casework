@@ -1,0 +1,127 @@
+[
+  {
+    "id": "algor-1",
+    "skill": "forensics.algor-mortis",
+    "title": "Algor mortis",
+    "prompt": "After death, a clothed adult in a room around 70 °F cools by roughly how much per hour?",
+    "options": ["About 0.2 °F", "About 1.5 °F", "About 5 °F"],
+    "answer": 1,
+    "explain": "A common teaching rule is about 1.5 °F (0.8 °C) per hour, often after a short plateau. It's a rough guide: room temperature, clothing, body size, air flow and wet clothing all change the rate, which is why real estimates use corrected methods and give wide ranges.",
+    "sources": [
+      { "cite": "Henssge C, Madea B. Estimation of the time since death in the early post-mortem period. Forensic Science International. 2004;144(2-3):167-175." },
+      { "cite": "Saukko P, Knight B. Knight's Forensic Pathology. 4th ed. CRC Press; 2016." }
+    ]
+  },
+  {
+    "id": "algor-2",
+    "skill": "forensics.algor-mortis",
+    "title": "Algor mortis",
+    "prompt": "A body measures 92.6 °F in a 70 °F room. Using the 1.5 °F per hour rule, roughly how long since death?",
+    "options": ["About 2 hours", "About 4 hours", "About 8 hours"],
+    "answer": 1,
+    "explain": "98.6 − 92.6 = 6 °F lost, and 6 ÷ 1.5 = 4 hours. Treat it as a centre point with an hour or two either side, not an exact answer.",
+    "sources": [
+      { "cite": "Saukko P, Knight B. Knight's Forensic Pathology. 4th ed. CRC Press; 2016." }
+    ]
+  },
+  {
+    "id": "rigor-1",
+    "skill": "forensics.rigor-mortis",
+    "title": "Rigor mortis",
+    "prompt": "Rigor mortis usually becomes noticeable first in which muscles?",
+    "options": ["Small muscles such as the jaw", "The large leg muscles", "All muscles at the same moment"],
+    "answer": 0,
+    "explain": "Stiffening is usually noticed first in small muscles (jaw, face, neck) a few hours after death, spreads to the arms and then the legs, is typically complete by around 12 hours, and passes off over the following day or two. Heat speeds it up and cold slows it down.",
+    "sources": [
+      { "cite": "DiMaio VJ, DiMaio D. Forensic Pathology. 2nd ed. CRC Press; 2001." },
+      { "cite": "Saukko P, Knight B. Knight's Forensic Pathology. 4th ed. CRC Press; 2016." }
+    ]
+  },
+  {
+    "id": "rigor-2",
+    "skill": "forensics.rigor-mortis",
+    "title": "Rigor mortis",
+    "prompt": "The jaw and arms are stiff, but the legs still move freely. What does that suggest?",
+    "options": ["Under an hour since death", "Rigor still spreading, roughly 3–8 hours", "Over two days since death"],
+    "answer": 1,
+    "explain": "Rigor that has reached the arms but not yet the legs is still developing, which typically means a few hours to most of a working day. Fully stiff joints suggest about 8 hours or more; loosening again suggests a day or more.",
+    "sources": [
+      { "cite": "DiMaio VJ, DiMaio D. Forensic Pathology. 2nd ed. CRC Press; 2001." }
+    ]
+  },
+  {
+    "id": "livor-1",
+    "skill": "forensics.livor-mortis",
+    "title": "Livor mortis",
+    "prompt": "Pooled blood (livor) that still blanches when you press it with a thumb usually means…",
+    "options": ["It hasn't fixed yet: usually under about 8–12 hours", "Death was more than two days ago", "The person died standing up"],
+    "answer": 0,
+    "explain": "After circulation stops, blood settles by gravity into the lowest parts of the body and becomes visible within about half an hour to a few hours. It blanches under pressure at first and becomes fixed, no longer blanching, at very roughly 8–12 hours.",
+    "sources": [
+      { "cite": "Saukko P, Knight B. Knight's Forensic Pathology. 4th ed. CRC Press; 2016." },
+      { "cite": "National Institute of Justice. Death Investigation: A Guide for the Scene Investigator. Technical update, 2011." }
+    ]
+  },
+  {
+    "id": "livor-2",
+    "skill": "forensics.livor-mortis",
+    "title": "Livor mortis",
+    "prompt": "A person is found face up, but fixed livor is on the front of the body. What should an investigator suspect?",
+    "options": ["Nothing unusual", "The body was moved after the livor fixed", "The person died of cold"],
+    "answer": 1,
+    "explain": "Livor forms on whatever side was lowest. Fixed livor that doesn't match the position the body was found in means the body was moved some hours after death, which is always worth explaining.",
+    "sources": [
+      { "cite": "National Institute of Justice. Death Investigation: A Guide for the Scene Investigator. Technical update, 2011." }
+    ]
+  },
+  {
+    "id": "gastric-1",
+    "skill": "forensics.gastric-contents",
+    "title": "Gastric contents",
+    "prompt": "How reliable is the state of the stomach for timing a death?",
+    "options": ["Precise to within half an hour", "Rough at best: emptying varies widely", "Useless, so it's never recorded"],
+    "answer": 1,
+    "explain": "A meal often leaves the stomach within roughly 2–6 hours, but meal size, fat content, stress, illness and drugs change that a lot. Stomach contents can support other evidence, especially when the meal time is known, but never replace it.",
+    "sources": [
+      { "cite": "DiMaio VJ, DiMaio D. Forensic Pathology. 2nd ed. CRC Press; 2001." },
+      { "cite": "Saukko P, Knight B. Knight's Forensic Pathology. 4th ed. CRC Press; 2016." }
+    ]
+  },
+  {
+    "id": "gastric-2",
+    "skill": "forensics.gastric-contents",
+    "title": "Gastric contents",
+    "prompt": "Dinner was at 7 PM and the stomach is still full of barely digested food. Death was most likely…",
+    "options": ["Within a couple of hours of dinner", "The next afternoon", "Before dinner"],
+    "answer": 0,
+    "explain": "A full stomach of barely digested food suggests death came fairly soon after the meal, within a couple of hours or so. It's a supporting clue, not proof: emptying can stall in some illnesses and stressful situations.",
+    "sources": [
+      { "cite": "DiMaio VJ, DiMaio D. Forensic Pathology. 2nd ed. CRC Press; 2001." }
+    ]
+  },
+  {
+    "id": "scene-1",
+    "skill": "forensics.scene-conditions",
+    "title": "Scene conditions",
+    "prompt": "The window was open on a cold night. Compared with the 1.5 °F per hour rule, the body probably cooled…",
+    "options": ["Faster, so death was more recent than the rule suggests", "Slower, so death was earlier", "No differently"],
+    "answer": 0,
+    "explain": "Colder surroundings speed cooling, so the same temperature drop took less time. A warm room does the opposite. Record the scene's conditions, including room temperature, before anything changes, and adjust or widen the estimate.",
+    "sources": [
+      { "cite": "National Institute of Justice. Death Investigation: A Guide for the Scene Investigator. Technical update, 2011." },
+      { "cite": "Henssge C, Madea B. Estimation of the time since death in the early post-mortem period. Forensic Science International. 2004;144(2-3):167-175." }
+    ]
+  },
+  {
+    "id": "scene-2",
+    "skill": "forensics.scene-conditions",
+    "title": "Scene conditions",
+    "prompt": "Why should the room temperature be measured as soon as investigators arrive?",
+    "options": ["It's required paperwork only", "Opening doors and windows changes it, and the cooling estimate depends on it", "It shows the cause of death"],
+    "answer": 1,
+    "explain": "Every body-temperature estimate depends on the surrounding temperature. Once people come and go, doors and windows open and heating changes, so the conditions the body actually cooled in are lost unless they're recorded first.",
+    "sources": [
+      { "cite": "National Institute of Justice. Death Investigation: A Guide for the Scene Investigator. Technical update, 2011." }
+    ]
+  }
+]
