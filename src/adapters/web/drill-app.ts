@@ -196,7 +196,7 @@ export function startDrill(root: HTMLElement, ports: Ports, notice?: string): vo
     const s = scoreWindow(body, a, b);
     const d = el("div", { class: `debrief ${s.hit ? "hit" : "miss"}`, id: "debrief" });
     d.append(el("p", { class: "verdict" }, s.hit ? (s.points === 3 ? "Right, and tight." : "Right.") : "Missed."));
-    d.append(el("p", {}, `Death was at ${clock(body.hoursDead)}, ${body.hoursDead} h before the body was found. Your window was ${clock(a)}–${clock(b)} (${s.widthHours} h): ${s.points} of 3 points.`));
+    d.append(el("p", {}, `Death was at ${clock(body.hoursDead)}, ${body.hoursDead} h before the body was found. Your window was ${clock(b)}–${clock(a)} (${s.widthHours} h): ${s.points} of 3 points.`));
     const ul = el("ul", { class: "why" });
     for (const e of ev) {
       const inside = body.hoursDead >= e.from && body.hoursDead <= e.to;

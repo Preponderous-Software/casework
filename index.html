@@ -54,6 +54,7 @@
   .tile .tx { font-size: 0.95rem; }
   .tile .st { font: 0.78rem/1.2 var(--mono); color: var(--accent); }
   .tile.known { border-color: var(--accent); }
+  .tile:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .tile.known .st { color: var(--muted); }
   .tile:disabled { cursor: default; }
   .chart svg { display: block; width: 100%; height: auto; font-family: var(--mono); font-size: 10px; }
