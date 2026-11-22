@@ -2,7 +2,7 @@
 // findings, the certificate and the debrief. Fails on console errors or horizontal overflow.
 //
 //   npm run build && python3 -m http.server 8770 &
-//   node tools/case-shots.cjs http://127.0.0.1:8770 docs/media [case-id] [--list]
+//   node tools/case-shots.cjs http://127.0.0.1:8770 docs/media [case-id] [--list] [--desktop] [--light]
 //
 // --list uses the exam room's list fallback (no WebGL), which is much faster on software GL.
 const { chromium } = require("playwright");
@@ -11,16 +11,20 @@ const base = process.argv[2] ?? "http://127.0.0.1:8770";
 const out = process.argv[3] ?? "shots";
 const caseId = process.argv[4] && !process.argv[4].startsWith("--") ? process.argv[4] : "night-shift";
 const listMode = process.argv.includes("--list");
+const desktop = process.argv.includes("--desktop");
+const light = process.argv.includes("--light");
+const tag = desktop ? "desktop-" : "";
 
 (async () => {
   const browser = await chromium.launch({ timeout: 600000, args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
-  const ctx = await browser.newContext({ viewport: { width: 400, height: 860 }, deviceScaleFactor: 2, colorScheme: "dark" });
+  const ctx = await browser.newContext({ viewport: desktop ? { width: 1440, height: 900 } : { width: 400, height: 860 }, deviceScaleFactor: desktop ? 1 : 2, colorScheme: light ? "light" : "dark" });
+  if (light) await ctx.addInitScript(() => { try { localStorage.setItem("casework.theme", "light"); } catch {} });
   const page = await ctx.newPage();
   page.setDefaultTimeout(240000);
   const problems = [];
   page.on("pageerror", (e) => problems.push(e.message));
   page.on("console", (m) => m.type() === "error" && problems.push(m.text()));
-  const shot = (name, opts = {}) => page.screenshot({ path: `${out}/case-${name}.png`, ...opts });
+  const shot = (name, opts = {}) => page.screenshot({ path: `${out}/${tag}case-${name}.png`, ...opts });
 
   const manifest = await (await fetch(`${base}/packs/forensics-core/manifest.json`)).json();
   const lessons = await (await fetch(`${base}/packs/forensics-core/lessons.json`)).json();

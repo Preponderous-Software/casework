@@ -40,7 +40,12 @@ export function startHome(root: HTMLElement, ports: HomePorts, notice?: string):
       list.append(a);
     });
     cs.append(list);
-    root.append(cs);
+    const grid = el("div", { class: "home-grid" });
+    const left = el("div", { class: "col" });
+    const rightCol = el("div", { class: "col" });
+    left.append(cs);
+    grid.append(left, rightCol);
+    root.append(grid);
 
     // Drill
     const due = dueCards(profile.cards, ports.today()).length;
@@ -55,22 +60,22 @@ export function startHome(root: HTMLElement, ports: HomePorts, notice?: string):
     dp.append(el("span", { class: due ? "pill mark" : "pill" }, due ? `${due} to review` : "Play"));
     da.append(ic, dt, dp);
     dr.append(da);
-    root.append(dr);
+    rightCol.append(dr);
 
     // Skills
     const sk = el("section", { class: "card" });
     sk.append(el("p", { class: "eyebrow" }, "Your skills"));
-    const grid = el("div", { class: "skillgrid" });
+    const skillGrid = el("div", { class: "skillgrid" });
     for (const s of ports.pack.skills) {
       const m = profile.skills[s.id] ?? "unknown";
       const cell = el("div", { class: "skill", title: `${s.name}: ${masteryLabel(m)}` });
       const b = el("span", { class: `badge m-${m}` });
       b.innerHTML = ICONS[s.icon] ?? "";
       cell.append(b, el("span", {}, s.name));
-      grid.append(cell);
+      skillGrid.append(cell);
     }
-    sk.append(grid, el("p", { class: "fine" }, "Grey: not learned yet · amber: novice · teal: practiced · green: mastered. You learn skills inside cases and the drill, when a finding needs them."));
-    root.append(sk);
+    sk.append(skillGrid, el("p", { class: "fine" }, "Grey: not learned yet · amber: novice · teal: practiced · green: mastered. You learn skills inside cases and the drill, when a finding needs them."));
+    rightCol.append(sk);
 
     // Progress
     const pr = el("section", { class: "card" });
@@ -99,7 +104,7 @@ export function startHome(root: HTMLElement, ports: HomePorts, notice?: string):
     });
     row.append(exp, imp, file);
     pr.append(row);
-    root.append(pr);
+    rightCol.append(pr);
 
     root.append(el("p", { class: "fine" }, `Content pack ${ports.pack.id} ${ports.pack.version}. Lessons cite their sources; time ranges are teaching approximations, not a reference for real casework. Code MIT, content CC BY-SA 4.0.`));
   }

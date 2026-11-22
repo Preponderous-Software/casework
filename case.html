@@ -4,12 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Casework</title>
+<script>try{var t=localStorage.getItem("casework.theme")||"dark";if(t!=="system")document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="dark";}</script>
 <link rel="stylesheet" href="styles.css">
 <style> :root { --sk-loader-bg: #1d2426; --sk-loader-accent: #5bbdcc; } </style>
 </head>
 <body>
-<main id="app">
-  <div id="top"><p class="sub">Loading the case…</p></div>
+<main id="app" class="case-layout">
+  <div id="head"></div>
+  <div class="col col-left">
+  <div id="top" class="col"><p class="sub">Loading the case…</p></div>
   <section id="examPanel" class="card exam" hidden>
     <p class="eyebrow">Exam room</p>
     <div class="exam-stage">
@@ -25,7 +28,8 @@
     <div id="regions" role="group" aria-label="Body regions"></div>
     <p class="fine">Drag to look around, pinch or scroll to zoom, and tap the body to examine it, or use the region buttons. <span id="last" hidden></span></p>
   </section>
-  <div id="rest"></div>
+  </div>
+  <div id="rest" class="col col-right"></div>
 </main>
 <script src="engine/strata-loader.js"></script>
 <script src="engine/strata-kit.js"></script>

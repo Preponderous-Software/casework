@@ -38,6 +38,14 @@ window that scores best when it is both right and tight.
   scores time (right and tight), cause, manner, reasoning (did your links hold?) and efficiency,
   shows who the person was and what happened, and turns mistakes into review cards.
 
+On a wide screen the exam room and procedures stay on the left while the findings, certificate and
+debrief fill the right:
+
+<img src="docs/media/desktop-case-6-debrief.png" alt="A signed case on a desktop: the 3D exam room and procedures on the left, the certificate and a 12 of 12 debrief on the right" width="820">
+
+Every page opens in dark mode, with a Dark / Light / Auto switch in the corner that's remembered
+in the browser.
+
 The tone is clinical and non-graphic: a stylized, faceless mannequin, injuries described in words,
 and a respectful line about each person.
 

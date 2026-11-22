@@ -3,6 +3,9 @@ import { loadPack } from "./content.ts";
 import { loadProfile, saveProfile } from "./storage.ts";
 import { today } from "./clock.ts";
 import { startHome } from "./home.ts";
+import { mountThemeSwitch } from "./theme.ts";
+
+mountThemeSwitch();
 
 async function boot() {
   const root = document.getElementById("app");

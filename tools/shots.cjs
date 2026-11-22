@@ -17,6 +17,7 @@ const SEED = 99;
     ["desktop", { width: 1100, height: 900 }, "light", 1],
   ]) {
     const ctx = await browser.newContext({ viewport, deviceScaleFactor: dpr, colorScheme: scheme });
+    await ctx.addInitScript((t) => { try { localStorage.setItem("casework.theme", t); } catch {} }, scheme);
     const page = await ctx.newPage();
     page.setDefaultTimeout(180000);
     page.on("pageerror", (e) => problems.push(`${name}: ${e.message}`));

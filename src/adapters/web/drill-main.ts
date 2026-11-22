@@ -3,6 +3,9 @@ import { startDrill } from "./drill-app.ts";
 import { loadPack } from "./content.ts";
 import { loadProfile, saveProfile } from "./storage.ts";
 import { randomSeed, today } from "./clock.ts";
+import { mountThemeSwitch } from "./theme.ts";
+
+mountThemeSwitch();
 
 /** `?seed=N` fixes the first body (for screenshots, bug reports and sharing a body). */
 function seedSource(): () => number {
