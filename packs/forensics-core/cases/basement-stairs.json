@@ -1,0 +1,39 @@
+{
+  "id": "basement-stairs",
+  "order": 3,
+  "title": "The basement stairs",
+  "intake": "Adult male, 45, found at the bottom of the basement stairs at 23:10.",
+  "context": "His wife called for help, saying he fell down the stairs about an hour earlier.",
+  "note": "This case involves a violent death. Findings are described clinically.",
+  "foundAt": 23.166667,
+  "shift": { "hours": 9, "budget": 750 },
+  "procedures": [
+    { "id": "scene", "name": "Scene investigation", "hours": 1, "cost": 0, "blurb": "The stairs, the basement, what his wife says." },
+    { "id": "external", "name": "External exam", "hours": 1, "cost": 0, "exam": true, "blurb": "Examine the body region by region." },
+    { "id": "autopsy", "name": "Autopsy", "hours": 3, "cost": 0, "requires": ["external"], "blurb": "The internal examination." },
+    { "id": "tox", "name": "Toxicology (rush)", "hours": 1, "cost": 400, "requires": ["autopsy"], "blurb": "Drugs and alcohol in the blood." },
+    { "id": "xray", "name": "Skeletal survey (X-ray)", "hours": 2, "cost": 150, "requires": ["external"], "blurb": "Old and new fractures across the whole skeleton." }
+  ],
+  "findings": [
+    { "id": "call", "procedure": "scene", "label": "Wife's account", "text": "Wife: he fell down the stairs about an hour before she called, at 23:05.", "skill": null, "meaning": "Her account puts death within the last hour or so. Check it against the body.", "interp": { "kind": "claim" } },
+    { "id": "steps", "procedure": "scene", "label": "Stairs", "text": "Eleven wooden steps. No blood or marks on the steps or walls; blood only on the floor under his head.", "skill": "forensics.head-injury", "meaning": "A tumbling fall usually leaves blood or marks on the way down. Injuries only at the bottom don't fit the story well.", "interp": { "kind": "claim" }, "supports": [{ "line": "manner", "value": "homicide" }] },
+    { "id": "temp", "procedure": "external", "region": "abdomen", "label": "Cooling", "text": "Core temperature 89.6 °F; basement 70 °F.", "skill": "forensics.algor-mortis", "meaning": "9.0 °F lost since death.", "interp": { "kind": "cooling", "bodyTempF": 89.6, "roomTempF": 70 } },
+    { "id": "rigor", "procedure": "external", "region": "jaw", "label": "Rigor", "text": "Stiff jaw and arms; legs still loose.", "skill": "forensics.rigor-mortis", "meaning": "Rigor is still spreading: roughly 3.5–8.5 hours.", "interp": { "kind": "range", "from": 3.5, "to": 8.5 } },
+    { "id": "livor", "procedure": "external", "region": "back", "pose": "prone", "label": "Livor", "text": "Purple-red on the back; blanches under thumb pressure.", "skill": "forensics.livor-mortis", "meaning": "Visible but not fixed: roughly 2–10 hours.", "interp": { "kind": "range", "from": 2, "to": 10 } },
+    { "id": "scalp", "procedure": "external", "region": "head", "label": "Top of head", "text": "Three lacerations on the top of the head, all above the hat brim line.", "skill": "forensics.head-injury", "meaning": "Falls usually injure the head at or below the hat brim line. Several injuries above it are typical of blows.", "interp": { "kind": "claim" }, "supports": [{ "line": "cause", "value": "blows" }, { "line": "manner", "value": "homicide" }] },
+    { "id": "arms", "procedure": "external", "region": "left-arm", "label": "Forearms", "text": "Bruises on the backs of both forearms.", "skill": "forensics.blunt-force", "meaning": "Defense injuries: bruises from raising the arms to ward off blows.", "interp": { "kind": "claim" }, "supports": [{ "line": "manner", "value": "homicide" }] },
+    { "id": "skull", "procedure": "autopsy", "label": "Skull and brain", "text": "A depressed fracture of the top of the skull, with bleeding over the brain beneath it and no bruising on the opposite side of the brain.", "skill": "forensics.head-injury", "meaning": "Injury under the impact with none opposite it (coup without contrecoup) means a moving object struck a still head: a blow, not a fall.", "interp": { "kind": "claim" }, "supports": [{ "line": "cause", "value": "blows" }, { "line": "manner", "value": "homicide" }] },
+    { "id": "stomach", "procedure": "autopsy", "label": "Stomach", "text": "Stomach empty.", "skill": "forensics.gastric-contents", "meaning": "No recent meal to time from. Empty stomachs say little on their own.", "interp": { "kind": "claim" } },
+    { "id": "tox", "procedure": "tox", "label": "Toxicology", "text": "Blood alcohol 0.02%; no drugs.", "skill": "forensics.toxicology-levels", "meaning": "Far too little alcohol to explain a fall or a death.", "interp": { "kind": "claim" } },
+    { "id": "xray", "procedure": "xray", "label": "Skeleton", "text": "No old fractures; no new fractures apart from the skull.", "skill": "forensics.blunt-force", "meaning": "A fall down eleven stairs often fractures an arm, wrist or ribs. Only the skull is broken.", "interp": { "kind": "claim" }, "supports": [{ "line": "manner", "value": "homicide" }] }
+  ],
+  "causes": [
+    { "id": "blows", "label": "Blunt force injuries of the head from blows" },
+    { "id": "fall", "label": "Head injury from a fall down stairs" },
+    { "id": "alcohol", "label": "Acute alcohol poisoning" },
+    { "id": "ascvd", "label": "Atherosclerotic coronary artery disease" }
+  ],
+  "truth": { "hoursDead": 6, "cause": "blows", "manner": "homicide", "partialManner": { "pending": 1, "undetermined": 1 }, "par": ["scene", "external", "autopsy", "tox"] },
+  "person": "Tomás Ortiz, 45, a high-school chemistry teacher.",
+  "story": "He died at about 17:10, some six hours before the call, from blows to the top of his head. The body's timeline and injuries didn't match the account of a fall an hour earlier. Homicide on a death certificate means death at the hands of another person; it is a medical finding, not a legal verdict, and what happened next is for the police and the courts."
+}

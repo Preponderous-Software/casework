@@ -60,9 +60,10 @@ export function startDrill(root: HTMLElement, ports: Ports, notice?: string): vo
   // ---------- header: skill badges ----------
   function header(): HTMLElement {
     const h = el("header", { class: "top" });
-    h.append(el("h1", {}, "Casework"), el("p", { class: "sub" }, "Time-of-death drill"));
+    h.append(el("a", { href: "./", class: "back" }, "← Casework"), el("h1", {}, "Time-of-death drill"), el("p", { class: "sub" }, "Read the body, learn the signs, set the window."));
     const badges = el("div", { class: "badges", "aria-label": "Your skills" });
-    for (const s of ports.pack.skills) {
+    const drillSkills = new Set<string>(Object.values(SKILL));
+    for (const s of ports.pack.skills.filter((x) => drillSkills.has(x.id))) {
       const m = mastery(s.id);
       const b = el("span", { class: `badge m-${m}`, title: `${s.name}: ${label(m)}`, "aria-label": `${s.name}: ${label(m)}` });
       b.innerHTML = ICONS[s.icon] ?? "";

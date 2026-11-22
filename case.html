@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Casework</title>
+<link rel="stylesheet" href="styles.css">
+<style> :root { --sk-loader-bg: #1d2426; --sk-loader-accent: #5bbdcc; } </style>
+</head>
+<body>
+<main id="app">
+  <div id="top"><p class="sub">Loading the case…</p></div>
+  <section id="examPanel" class="card exam" hidden>
+    <p class="eyebrow">Exam room</p>
+    <div class="exam-stage">
+      <span id="poseChip" class="pose-chip" aria-hidden="true">Face up</span>
+      <canvas id="view" tabindex="0" aria-label="3D exam room: drag to look around, pinch or scroll to zoom, tap the body to examine a region"></canvas>
+      <div id="fallback" hidden>
+        <p><b>The 3D exam room isn't available here.</b></p>
+        <p class="why"></p>
+        <p>You can still examine the body: pick a region below.</p>
+      </div>
+    </div>
+    <div class="row"><button id="turn" type="button" class="btn ghost">Turn the body</button><span id="status" role="status"></span></div>
+    <div id="regions" role="group" aria-label="Body regions"></div>
+    <p class="fine">Drag to look around, pinch or scroll to zoom, and tap the body to examine it, or use the region buttons. <span id="last" hidden></span></p>
+  </section>
+  <div id="rest"></div>
+</main>
+<script src="engine/strata-loader.js"></script>
+<script src="engine/strata-kit.js"></script>
+<script type="module" src="dist/adapters/web/case-main.js"></script>
+<noscript><p>Casework needs JavaScript.</p></noscript>
+</body>
+</html>

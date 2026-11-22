@@ -4,102 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Casework</title>
-<meta name="description" content="A medical examiner game where the forensic science is real. Time-of-death drill.">
-<style>
-  :root {
-    --bg: #f3f5f7; --card: #ffffff; --ink: #18202e; --muted: #5b6475; --rule: #d9dde5;
-    --accent: #0f6e6a; --accent-soft: #e1f1ef; --mark: #9e1b32; --mark-soft: #f6e6e9;
-    --ok: #1f7a3d; --ok-soft: #e3f3e8; --bad: #a3361f; --bad-soft: #f8e7e2;
-    --novice: #c98a1a; --practiced: #0f6e6a; --mastered: #1f7a3d;
-    --font: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
-    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #11151d; --card: #1a202b; --ink: #e7eaf0; --muted: #9aa3b4; --rule: #2c3442;
-      --accent: #4fc2b9; --accent-soft: #163432; --mark: #e3687c; --mark-soft: #3a1e26;
-      --ok: #6fd08e; --ok-soft: #173523; --bad: #f08b72; --bad-soft: #3b221b;
-      --novice: #e7b65a; --practiced: #4fc2b9; --mastered: #6fd08e;
-      color-scheme: dark;
-    }
-  }
-  * { box-sizing: border-box; }
-  [hidden] { display: none !important; }
-  html, body { margin: 0; background: var(--bg); color: var(--ink); }
-  body { font: 16px/1.55 var(--font); padding: env(safe-area-inset-top, 0px) max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px)); }
-  #app { max-width: 640px; margin: 0 auto; display: grid; gap: 14px; }
-  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-  p { margin: 0; }
-  .top { display: grid; gap: 6px; padding-top: 18px; }
-  .top h1 { margin: 0; font-size: 1.9rem; letter-spacing: -0.01em; }
-  .sub { color: var(--muted); }
-  .stats { font: 0.8rem/1.2 var(--mono); color: var(--muted); }
-  .badges { display: flex; gap: 8px; }
-  .badge { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--card); border: 3px solid var(--rule); color: var(--muted); }
-  .badge svg { width: 22px; height: 22px; }
-  .badge.m-novice { border-color: var(--novice); color: var(--novice); }
-  .badge.m-practiced { border-color: var(--practiced); color: var(--practiced); }
-  .badge.m-mastered { border-color: var(--mastered); color: var(--mastered); background: var(--ok-soft); }
-  .notice { padding: 10px 12px; border-radius: 8px; background: var(--mark-soft); color: var(--ink); border-left: 3px solid var(--mark); }
-  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 16px; display: grid; gap: 12px; }
-  .round { display: grid; gap: 14px; }
-  .eyebrow { font: 600 0.75rem/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mark); }
-  .prompt { font-weight: 700; font-size: 1.05rem; }
-  .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  @media (max-width: 360px) { .tiles { grid-template-columns: 1fr; } }
-  .tile { font: inherit; color: var(--ink); text-align: left; cursor: pointer; display: grid; grid-template-columns: 40px 1fr; grid-template-rows: auto auto; gap: 4px 10px; align-items: start; padding: 12px; border-radius: 12px; border: 1px solid var(--rule); background: var(--card); min-height: 88px; }
-  .tile:hover:not(:disabled) { border-color: var(--accent); }
-  .tile .ic { grid-row: span 2; width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
-  .tile .ic svg { width: 24px; height: 24px; }
-  .tile .tx { font-size: 0.95rem; }
-  .tile .st { font: 0.78rem/1.2 var(--mono); color: var(--accent); }
-  .tile.known { border-color: var(--accent); }
-  .tile:last-child:nth-child(odd) { grid-column: 1 / -1; }
-  .tile.known .st { color: var(--muted); }
-  .tile:disabled { cursor: default; }
-  .chart svg { display: block; width: 100%; height: auto; font-family: var(--mono); font-size: 10px; }
-  .chart .grid { stroke: var(--rule); }
-  .chart .axis { fill: var(--muted); }
-  .chart .lab { fill: var(--ink); }
-  .chart .bar { fill-opacity: 0.4; stroke-width: 1.2; }
-  .chart .bar.m-novice { fill: var(--novice); stroke: var(--novice); }
-  .chart .bar.m-practiced { fill: var(--practiced); stroke: var(--practiced); }
-  .chart .bar.m-mastered { fill: var(--mastered); stroke: var(--mastered); }
-  .chart .overlap { fill: var(--ok); fill-opacity: 0.12; stroke: var(--ok); stroke-dasharray: 4 3; }
-  .chart .win { fill: var(--mark); }
-  .chart .truth { stroke: var(--ink); stroke-width: 2.5; }
-  .slider { display: grid; grid-template-columns: 4.6rem 1fr 3.4rem; gap: 10px; align-items: center; font-size: 0.9rem; }
-  .slider input { width: 100%; accent-color: var(--mark); min-height: 32px; }
-  .slider output { font: 0.9rem var(--mono); text-align: right; }
-  .btn { font: 700 1rem/1.1 var(--font); padding: 13px 18px; min-height: 48px; border-radius: 10px; cursor: pointer; justify-self: start; }
-  .btn.go { background: var(--accent); color: var(--card); border: 0; }
-  .btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-  .opts { display: grid; gap: 8px; }
-  .opt { font: inherit; text-align: left; padding: 12px 14px; min-height: 48px; border-radius: 10px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); cursor: pointer; }
-  .opt:hover:not(:disabled) { border-color: var(--accent); }
-  .opt:disabled { cursor: default; }
-  .opt.right { background: var(--ok-soft); border-color: var(--ok); }
-  .opt.wrong { background: var(--bad-soft); border-color: var(--bad); }
-  .explain { display: grid; gap: 8px; padding: 12px; border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 10px 10px 0; font-size: 0.95rem; }
-  .src summary { cursor: pointer; font: 0.8rem var(--mono); color: var(--muted); }
-  .src p { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
-  .fine { font-size: 0.85rem; color: var(--muted); }
-  .debrief { display: grid; gap: 10px; padding: 14px; border-radius: 10px; }
-  .debrief.hit { background: var(--ok-soft); }
-  .debrief.miss { background: var(--bad-soft); }
-  .verdict { font-weight: 800; font-size: 1.3rem; }
-  .why { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: 0.93rem; }
-  .why li.off { color: var(--bad); }
-  .sheet-back { position: fixed; inset: 0; background: rgb(0 0 0 / 0.45); display: grid; align-items: end; justify-items: center; z-index: 20; }
-  .sheet { width: min(640px, 100%); max-height: 88vh; overflow-y: auto; background: var(--card); border-radius: 16px 16px 0 0; padding: 18px max(16px, env(safe-area-inset-left, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 12px; }
-  @media (min-width: 700px) { .sheet-back { align-items: center; } .sheet { border-radius: 16px; } }
-  @media (prefers-reduced-motion: no-preference) { .tile, .opt { transition: border-color 0.15s, background 0.15s; } }
-</style>
+<meta name="description" content="A medical examiner game where the forensic science is real.">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main id="app" aria-live="polite"><p class="sub">Loading the drill…</p></main>
-<script type="module" src="dist/adapters/web/main.js"></script>
+<main id="app" aria-live="polite"><p class="sub">Loading…</p></main>
+<script type="module" src="dist/adapters/web/home-main.js"></script>
 <noscript><p>Casework needs JavaScript.</p></noscript>
 </body>
 </html>

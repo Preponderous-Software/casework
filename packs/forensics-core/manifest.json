@@ -1,15 +1,70 @@
 {
   "id": "forensics-core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "CC-BY-SA-4.0",
   "drafted_by": "Claude Opus 5.5, with sources cited per lesson",
   "checked_by": [],
   "skills": [
-    { "id": "forensics.algor-mortis", "name": "Algor mortis", "icon": "thermometer" },
-    { "id": "forensics.rigor-mortis", "name": "Rigor mortis", "icon": "joint" },
-    { "id": "forensics.livor-mortis", "name": "Livor mortis", "icon": "drop" },
-    { "id": "forensics.gastric-contents", "name": "Gastric contents", "icon": "clock" },
-    { "id": "forensics.scene-conditions", "name": "Scene conditions", "icon": "window" }
+    {
+      "id": "forensics.algor-mortis",
+      "name": "Algor mortis",
+      "icon": "thermometer"
+    },
+    {
+      "id": "forensics.rigor-mortis",
+      "name": "Rigor mortis",
+      "icon": "joint"
+    },
+    {
+      "id": "forensics.livor-mortis",
+      "name": "Livor mortis",
+      "icon": "drop"
+    },
+    {
+      "id": "forensics.gastric-contents",
+      "name": "Gastric contents",
+      "icon": "clock"
+    },
+    {
+      "id": "forensics.scene-conditions",
+      "name": "Scene conditions",
+      "icon": "window"
+    },
+    {
+      "id": "forensics.coronary-disease",
+      "name": "Coronary disease",
+      "icon": "heart"
+    },
+    {
+      "id": "forensics.manner-of-death",
+      "name": "Manner of death",
+      "icon": "scale"
+    },
+    {
+      "id": "forensics.toxicology-levels",
+      "name": "Toxicology levels",
+      "icon": "flask"
+    },
+    {
+      "id": "forensics.anticoagulants",
+      "name": "Blood thinners",
+      "icon": "pill"
+    },
+    {
+      "id": "forensics.head-injury",
+      "name": "Head injury",
+      "icon": "head"
+    },
+    {
+      "id": "forensics.blunt-force",
+      "name": "Blunt force",
+      "icon": "shield"
+    }
   ],
-  "lessons": "lessons.json"
+  "lessons": "lessons.json",
+  "cases": [
+    "cases/night-shift.json",
+    "cases/kitchen-floor.json",
+    "cases/basement-stairs.json"
+  ]
 }

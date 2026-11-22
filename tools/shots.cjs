@@ -21,7 +21,7 @@ const SEED = 99;
     page.setDefaultTimeout(180000);
     page.on("pageerror", (e) => problems.push(`${name}: ${e.message}`));
     page.on("console", (m) => m.type() === "error" && problems.push(`${name}: ${m.text()}`));
-    await page.goto(`${base}/?seed=${SEED}`, { waitUntil: "load" });
+    await page.goto(`${base}/drill.html?seed=${SEED}`, { waitUntil: "load" });
     await page.waitForSelector(".tiles");
     const shot = (file, opts = {}) => page.screenshot({ path: `${out}/${name}-${file}.png`, ...opts });
 

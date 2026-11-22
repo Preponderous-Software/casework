@@ -4,9 +4,46 @@ A medical examiner game where the forensic science is real. Examine a body, lear
 means at the moment you need it, and sign the death certificate: cause, manner, and a time-of-death
 window that scores best when it is both right and tight.
 
-> **Status:** early development. Playable so far: the **time-of-death drill**. Read the findings
-> on a body, learn what each one means, set a time-of-death window and sign it. A 3D exam room is in
-> progress.
+> **Status:** early development, playable. **Three cases** (a natural death, an accident and a
+> homicide whose timeline doesn't match the story), each with a 3D exam room, plus an endless
+> **time-of-death drill**.
+
+## How a case plays
+
+<table>
+  <tr>
+    <td><img src="docs/media/case-2-exam-room.png" alt="The 3D exam room: a faceless mannequin on an exam table, with Turn the body and region buttons" width="200"></td>
+    <td><img src="docs/media/case-4-findings.png" alt="Interpreted findings, each with Time, Cause and Manner buttons to use it as evidence" width="200"></td>
+    <td><img src="docs/media/case-5-certificate.png" alt="The death certificate: time-of-death evidence chart with the player's window, and cause of death choices" width="200"></td>
+    <td><img src="docs/media/case-6-debrief.png" alt="The debrief: 12 of 12, with time, cause, manner, reasoning and efficiency scores and a line about the person" width="200"></td>
+  </tr>
+  <tr>
+    <td>Examine the body in 3D</td>
+    <td>Interpret and link findings</td>
+    <td>Fill in the certificate</td>
+    <td>Sign and see the truth</td>
+  </tr>
+</table>
+
+- **Procedures:** spend shift hours and lab budget on the scene investigation, external exam,
+  autopsy and toxicology. Some need others first, and some cases have tests you don't need.
+- **Examine:** the external exam opens a 3D exam room (Strata, in the browser). Tap a region of the
+  body to examine it, and turn the body over to check the back. Where 3D can't run, the same regions
+  are buttons.
+- **Interpret:** turning a finding into evidence needs a skill. If you don't have it yet, a
+  one-question lesson opens right there. Your skill level sets how precise timing evidence is.
+- **Link:** tap Time, Cause or Manner on an interpreted finding to use it as evidence on the
+  certificate. Every line needs support before you can sign.
+- **Sign and debrief:** set the time-of-death window, choose cause and manner, sign. The debrief
+  scores time (right and tight), cause, manner, reasoning (did your links hold?) and efficiency,
+  shows who the person was and what happened, and turns mistakes into review cards.
+
+The tone is clinical and non-graphic: a stylized, faceless mannequin, injuries described in words,
+and a respectful line about each person.
+
+### The time-of-death drill
+
+An endless practice mode: a generated body, the early signs of death, and a window to set.
 
 <table>
   <tr>
@@ -25,22 +62,21 @@ window that scores best when it is both right and tight.
 
 Each skill's colour shows how well you know it: amber for novice (a wider bar), teal for practiced, green for mastered.
 
-## How it plays (planned)
+### In a terminal
 
-- **Examine:** spend shift hours on procedures (scene, external exam, autopsy, toxicology) and tap
-  regions of the body on the table to reveal findings.
-- **Interpret:** turning a finding into evidence needs a skill. If you don't have it yet, a
-  one-question lesson opens right there. Your skill level sets how precise the evidence is.
-- **Certify:** link interpretations to the certificate lines they support, then sign.
-- **Debrief:** see what really happened. Every missed inference becomes a review card for your next
-  shift.
+Every case can also be played as text, for people, AI playtesters and scripted checks:
 
-The tone is clinical and non-graphic: a stylized mannequin, injuries shown as markers, and a
-respectful line about each person.
+```sh
+npm run play -- night-shift          # type "help" for commands
+npm run play -- night-shift < moves.txt
+```
 
 ## Design
 
 - [docs/design.md](docs/design.md): core loop, decisions and milestones.
+- Case data format, scoring and milestones: [docs/design.md](docs/design.md). Cases are JSON in
+  `packs/forensics-core/cases/`; `tests/cases.test.ts` checks each one is valid and that an expert
+  can score 12/12 using only what the case shows.
 - Screenshots are made by `npm run shots` (see `tools/shots.cjs`), which plays one drill with a
   fixed seed (`?seed=99`) at phone and desktop sizes and fails on console errors or overflow.
 - Architecture: ports and adapters. `src/kernel` (skills, lessons, review: reusable by other

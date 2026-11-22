@@ -37,3 +37,22 @@ export function saveProfile(p: Profile): void {
     /* storage blocked: play continues without saving */
   }
 }
+
+/** An unfinished case, so a reload doesn't lose the shift. Best effort: never throws. */
+export function loadCaseProgress<T>(caseId: string): T | null {
+  try {
+    const raw = localStorage.getItem(`casework.case.${caseId}`);
+    return raw ? (JSON.parse(raw) as T) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveCaseProgress(caseId: string, s: unknown): void {
+  try {
+    if (s === null) localStorage.removeItem(`casework.case.${caseId}`);
+    else localStorage.setItem(`casework.case.${caseId}`, JSON.stringify(s));
+  } catch {
+    /* storage blocked */
+  }
+}
