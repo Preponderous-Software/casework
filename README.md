@@ -4,8 +4,9 @@ A medical examiner game where the forensic science is real. Examine a body, lear
 means at the moment you need it, and sign the death certificate: cause, manner, and a time-of-death
 window that scores best when it is both right and tight.
 
-> **Status:** early development. Nothing playable yet. The first milestone is a time-of-death drill
-> and a 3D exam room spike.
+> **Status:** early development. Playable so far: the **time-of-death drill**. Read the findings
+> on a body, learn what each one means, set a time-of-death window and sign it. A 3D exam room is in
+> progress.
 
 ## How it plays (planned)
 
@@ -37,6 +38,9 @@ npm test          # unit tests, including the layer rule
 npm run typecheck
 npm run build     # compiles src/ to dist/ for the browser
 ```
+
+To play locally, build and then serve the repo root with any static server, for example
+`python3 -m http.server 8770`, and open http://localhost:8770/.
 
 ## Accuracy
 

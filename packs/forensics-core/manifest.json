@@ -1,1 +1,15 @@
-{"id":"forensics-core","version":"0.0.0","license":"CC-BY-SA-4.0","skills":[],"lessons":[],"cases":[]}
+{
+  "id": "forensics-core",
+  "version": "0.1.0",
+  "license": "CC-BY-SA-4.0",
+  "drafted_by": "Claude Opus 5.5, with sources cited per lesson",
+  "checked_by": [],
+  "skills": [
+    { "id": "forensics.algor-mortis", "name": "Algor mortis", "icon": "thermometer" },
+    { "id": "forensics.rigor-mortis", "name": "Rigor mortis", "icon": "joint" },
+    { "id": "forensics.livor-mortis", "name": "Livor mortis", "icon": "drop" },
+    { "id": "forensics.gastric-contents", "name": "Gastric contents", "icon": "clock" },
+    { "id": "forensics.scene-conditions", "name": "Scene conditions", "icon": "window" }
+  ],
+  "lessons": "lessons.json"
+}
