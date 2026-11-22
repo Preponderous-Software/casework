@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { afterLesson, afterReview } from "../src/kernel/skills.ts";
 import { dueCards, enqueue, grade, newCard } from "../src/kernel/review.ts";
-import { emptyProfile, exportProfile, importProfile, migrate, ProfileError, PROFILE_VERSION } from "../src/kernel/profile.ts";
+import { emptyProfile, exportProfile, importProfile, migrate, ProfileError, PROFILE_VERSION, recordResult } from "../src/kernel/profile.ts";
 
 test("a just-in-time lesson grants practiced when right and novice when wrong, and never lowers a skill", () => {
   assert.equal(afterLesson("unknown", true), "practiced");
@@ -52,4 +52,20 @@ test("a missing save starts fresh, but a damaged or newer save is refused, never
   assert.throws(() => migrate({ skills: {} }), ProfileError);
   assert.throws(() => migrate({ version: PROFILE_VERSION + 1, skills: {}, cards: [], stats: {} }), ProfileError);
   assert.throws(() => importProfile('{"app":"other","version":1}'), ProfileError);
+});
+
+test("a version 1 save migrates to version 2 and keeps everything the player earned", () => {
+  const v1 = { version: 1, skills: { "forensics.rigor-mortis": "mastered" }, cards: [{ skill: "forensics.rigor-mortis", due: 5, intervalDays: 3, ease: 2.6, reps: 2 }], stats: { drills: 9, drillsHit: 7, bestStreak: 4, streak: 2 } };
+  const p = migrate(v1);
+  assert.equal(p.version, PROFILE_VERSION);
+  assert.deepEqual(p.skills, v1.skills);
+  assert.deepEqual(p.cards, v1.cards);
+  assert.deepEqual(p.stats, v1.stats);
+  assert.deepEqual(p.records, {});
+});
+
+test("results keep the best score and count plays", () => {
+  let p = recordResult(emptyProfile(), "case:night-shift", 9);
+  p = recordResult(p, "case:night-shift", 7);
+  assert.deepEqual(p.records["case:night-shift"], { best: 9, plays: 2 });
 });

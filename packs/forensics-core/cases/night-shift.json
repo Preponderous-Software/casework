@@ -1,0 +1,37 @@
+{
+  "id": "night-shift",
+  "order": 1,
+  "title": "Night shift",
+  "intake": "Adult male, 58, found in bed at 07:40 by a neighbor.",
+  "context": "The neighbor had a key and came to check when he didn't answer the door. No signs of a break-in.",
+  "foundAt": 7.666667,
+  "shift": { "hours": 8, "budget": 600 },
+  "procedures": [
+    { "id": "scene", "name": "Scene investigation", "hours": 1, "cost": 0, "blurb": "Where and how he was found, and who saw him last." },
+    { "id": "external", "name": "External exam", "hours": 1, "cost": 0, "exam": true, "blurb": "Examine the body region by region." },
+    { "id": "autopsy", "name": "Autopsy", "hours": 3, "cost": 0, "requires": ["external"], "blurb": "The internal examination." },
+    { "id": "tox", "name": "Toxicology (rush)", "hours": 1, "cost": 400, "requires": ["autopsy"], "blurb": "Drugs and alcohol in the blood." }
+  ],
+  "findings": [
+    { "id": "window", "procedure": "scene", "label": "Window", "text": "Bedroom window open; 38 °F outside overnight. Police closed it before the room was measured at 70 °F.", "skill": "forensics.scene-conditions", "meaning": "The room was colder overnight than the 70 °F measured, so he cooled faster than the usual 1.5 °F per hour: about 1.8.", "interp": { "kind": "claim" }, "coolingRate": 1.8 },
+    { "id": "neighbor", "procedure": "scene", "label": "Last seen", "text": "Neighbor: they ate dinner together around 22:00, and he went home at 22:45, 'a little tired'.", "skill": null, "meaning": "He was alive at 22:45, so he died after that.", "interp": { "kind": "alive-at", "hoursBeforeFound": 8.916667 } },
+    { "id": "pills", "procedure": "scene", "label": "Medication", "text": "Prescribed heart medication on the nightstand; the pill count matches the refill date.", "skill": "forensics.manner-of-death", "meaning": "He was taking it as prescribed. No sign of an overdose or of intent to die.", "interp": { "kind": "claim" }, "supports": [{ "line": "manner", "value": "natural" }] },
+    { "id": "temp", "procedure": "external", "region": "abdomen", "label": "Cooling", "text": "Core temperature 87.5 °F; room 70 °F.", "skill": "forensics.algor-mortis", "meaning": "11.1 °F lost since death.", "interp": { "kind": "cooling", "bodyTempF": 87.5, "roomTempF": 70 } },
+    { "id": "rigor", "procedure": "external", "region": "jaw", "label": "Rigor", "text": "Stiff jaw and arms; legs still loose.", "skill": "forensics.rigor-mortis", "meaning": "Rigor is still spreading: roughly 3.5–8.5 hours.", "interp": { "kind": "range", "from": 3.5, "to": 8.5 } },
+    { "id": "livor", "procedure": "external", "region": "back", "pose": "prone", "label": "Livor", "text": "Purple-red on the back; blanches under thumb pressure.", "skill": "forensics.livor-mortis", "meaning": "Visible but not yet fixed: roughly 2–10 hours. It's on the back, matching how he lay.", "interp": { "kind": "range", "from": 2, "to": 10 } },
+    { "id": "head", "procedure": "external", "region": "head", "label": "No injuries", "text": "No injuries to the head, neck or hands. No pinpoint bleeds (petechiae) in the eyes.", "skill": "forensics.manner-of-death", "meaning": "Nothing suggests an assault, an accident or smothering.", "interp": { "kind": "claim" }, "supports": [{ "line": "manner", "value": "natural" }] },
+    { "id": "heart", "procedure": "autopsy", "label": "Heart", "text": "Left anterior descending coronary artery 90% narrowed; an old scar in the heart muscle.", "skill": "forensics.coronary-disease", "meaning": "Severe coronary disease that can cause sudden death from a fatal heart rhythm, often with little warning.", "interp": { "kind": "claim" }, "supports": [{ "line": "cause", "value": "ascvd" }, { "line": "manner", "value": "natural" }] },
+    { "id": "lungs", "procedure": "autopsy", "label": "Lungs", "text": "Lungs heavy with fluid; airway clear.", "skill": "forensics.coronary-disease", "meaning": "Fluid backs up into the lungs when the heart fails to pump. The clear airway rules out choking.", "interp": { "kind": "claim" }, "supports": [{ "line": "cause", "value": "ascvd" }] },
+    { "id": "stomach", "procedure": "autopsy", "label": "Stomach", "text": "Partly digested meal in the stomach.", "skill": "forensics.gastric-contents", "meaning": "Death came roughly 1–6 hours after dinner at 22:00. A rough clue.", "interp": { "kind": "after-meal", "mealHoursBeforeFound": 9.666667, "from": 1, "to": 6 } },
+    { "id": "tox", "procedure": "tox", "label": "Toxicology", "text": "Prescribed medication at a therapeutic level; no alcohol or other drugs.", "skill": "forensics.toxicology-levels", "meaning": "Taken as prescribed. Drugs did not cause this death.", "interp": { "kind": "claim" }, "supports": [{ "line": "manner", "value": "natural" }] }
+  ],
+  "causes": [
+    { "id": "ascvd", "label": "Atherosclerotic coronary artery disease" },
+    { "id": "tox", "label": "Drug toxicity" },
+    { "id": "hypo", "label": "Hypothermia" },
+    { "id": "asph", "label": "Asphyxia" }
+  ],
+  "truth": { "hoursDead": 6.166667, "cause": "ascvd", "manner": "natural", "partialManner": { "pending": 1 }, "par": ["scene", "external", "autopsy", "tox"] },
+  "person": "Marcus Hale, 58, a retired bus mechanic who coached his niece's softball team.",
+  "story": "He died at about 01:30 of a heart rhythm brought on by coronary artery disease he didn't know was this severe. The tiredness after dinner was likely an early warning."
+}

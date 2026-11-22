@@ -1,0 +1,37 @@
+{
+  "id": "kitchen-floor",
+  "order": 2,
+  "title": "The kitchen floor",
+  "intake": "Adult female, 81, found on her kitchen floor at 09:00 by her daughter.",
+  "context": "She lived alone and was independent. Her daughter came by because she didn't answer the phone that morning.",
+  "foundAt": 9,
+  "shift": { "hours": 8, "budget": 600 },
+  "procedures": [
+    { "id": "scene", "name": "Scene investigation", "hours": 1, "cost": 0, "blurb": "The kitchen, her medicines, who spoke to her last." },
+    { "id": "external", "name": "External exam", "hours": 1, "cost": 0, "exam": true, "blurb": "Examine the body region by region." },
+    { "id": "autopsy", "name": "Autopsy", "hours": 3, "cost": 0, "requires": ["external"], "blurb": "The internal examination." },
+    { "id": "tox", "name": "Toxicology (rush)", "hours": 1, "cost": 400, "requires": ["autopsy"], "blurb": "Drugs and alcohol in the blood." }
+  ],
+  "findings": [
+    { "id": "phone", "procedure": "scene", "label": "Last call", "text": "Daughter: they spoke by phone at 20:30, and she sounded well.", "skill": null, "meaning": "She was alive at 20:30.", "interp": { "kind": "alive-at", "hoursBeforeFound": 12.5 } },
+    { "id": "rug", "procedure": "scene", "label": "Kitchen", "text": "Tiled floor. A small rug is rucked up by her feet and a cup of tea is spilled beside her. Nothing else is out of place.", "skill": "forensics.scene-conditions", "meaning": "The scene fits a trip and a fall, with no sign of a struggle.", "interp": { "kind": "claim" }, "supports": [{ "line": "manner", "value": "accident" }] },
+    { "id": "warfarin", "procedure": "scene", "label": "Blood thinner", "text": "Warfarin in the medicine cabinet, refilled last week.", "skill": "forensics.anticoagulants", "meaning": "Warfarin slows clotting, so a head injury that would be minor for most people can cause a large bleed.", "interp": { "kind": "claim" }, "supports": [{ "line": "cause", "value": "sdh" }] },
+    { "id": "temp", "procedure": "external", "region": "abdomen", "label": "Cooling", "text": "Core temperature 81.0 °F; kitchen 66 °F.", "skill": "forensics.algor-mortis", "meaning": "17.6 °F lost since death.", "interp": { "kind": "cooling", "bodyTempF": 81.0, "roomTempF": 66 } },
+    { "id": "rigor", "procedure": "external", "region": "jaw", "label": "Rigor", "text": "Fully stiff in all major joints.", "skill": "forensics.rigor-mortis", "meaning": "Rigor is complete: roughly 7.5 hours or more.", "interp": { "kind": "range", "from": 7.5, "to": 24 } },
+    { "id": "livor", "procedure": "external", "region": "back", "pose": "prone", "label": "Livor", "text": "Purple-red on the back; does not blanch under pressure.", "skill": "forensics.livor-mortis", "meaning": "Fixed livor: roughly 8 hours or more. It matches the position she was found in, so she wasn't moved.", "interp": { "kind": "range", "from": 8, "to": 24 } },
+    { "id": "scalp", "procedure": "external", "region": "head", "label": "Back of head", "text": "A bruise and swelling on the back of the head, low down at the level of a hat brim. No other head injuries.", "skill": "forensics.head-injury", "meaning": "One impact at hat-brim level on the back of the head: the typical injury of a backward fall.", "interp": { "kind": "claim" }, "supports": [{ "line": "manner", "value": "accident" }] },
+    { "id": "arms", "procedure": "external", "region": "left-arm", "label": "Forearms", "text": "No bruises on the hands or forearms.", "skill": "forensics.blunt-force", "meaning": "No defense injuries, so nothing suggests she was fending off blows.", "interp": { "kind": "claim" }, "supports": [{ "line": "manner", "value": "accident" }] },
+    { "id": "brain", "procedure": "autopsy", "label": "Brain", "text": "A large subdural hematoma (a blood clot over the brain), and bruising of the front of the brain, opposite the impact.", "skill": "forensics.head-injury", "meaning": "Bruising opposite the impact (contrecoup) means a moving head struck a fixed surface: a fall, not a blow. The clot is the cause of death.", "interp": { "kind": "claim" }, "supports": [{ "line": "cause", "value": "sdh" }, { "line": "manner", "value": "accident" }] },
+    { "id": "heart", "procedure": "autopsy", "label": "Heart", "text": "Mildly enlarged heart; coronary arteries 40% narrowed.", "skill": "forensics.coronary-disease", "meaning": "Common at her age, and not severe enough to explain a sudden death.", "interp": { "kind": "claim" } },
+    { "id": "tox", "procedure": "tox", "label": "Toxicology", "text": "Warfarin at a therapeutic level; no alcohol or other drugs.", "skill": "forensics.toxicology-levels", "meaning": "Taken as prescribed: not an overdose, but enough to make the bleed much worse.", "interp": { "kind": "claim" }, "supports": [{ "line": "cause", "value": "sdh" }, { "line": "manner", "value": "accident" }] }
+  ],
+  "causes": [
+    { "id": "sdh", "label": "Subdural hematoma from blunt head injury in a fall" },
+    { "id": "ascvd", "label": "Atherosclerotic coronary artery disease" },
+    { "id": "warfarin", "label": "Warfarin toxicity" },
+    { "id": "stroke", "label": "Stroke from bleeding inside the brain (disease)" }
+  ],
+  "truth": { "hoursDead": 11.75, "cause": "sdh", "manner": "accident", "partialManner": { "pending": 1 }, "par": ["scene", "external", "autopsy", "tox"] },
+  "person": "Eleanor Voss, 81, a former school librarian who still walked to the market every morning.",
+  "story": "She tripped on the rug at about 21:15 and fell backward, striking her head on the tiles. On warfarin, the bleed over her brain grew quickly. Her death is certified an accident: the fall caused the injury, even though the medicine made it worse."
+}
