@@ -61,6 +61,10 @@ npm run build     # compiles src/ to dist/ for the browser
 To play locally, build and then serve the repo root with any static server, for example
 `python3 -m http.server 8770`, and open http://localhost:8770/.
 
+The 3D exam room spike is `spike/exam-room.html` (serve the repo root after `npm run build`). Its
+engine in `engine/` is [Tangle](https://github.com/Preponderous-Software/tangle)'s prebuilt Strata
+host (MIT), reused unchanged.
+
 ## Accuracy
 
 Lessons cite published sources, and teaching approximations (such as the 1.5 °F per hour cooling
