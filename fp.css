@@ -68,7 +68,7 @@ body:has(.fp-root) { padding: 0; overflow: hidden; }
 .fp-say-tile { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; font: 700 16px/1 var(--font); background: hsl(var(--who-h, 174) 45% 50% / 0.18); color: hsl(var(--who-h, 174) 60% var(--fp-who-l)); border: 1px solid hsl(var(--who-h, 174) 50% 50% / 0.45); }
 .fp-say-body { display: grid; gap: 3px; min-width: 0; }
 .fp-say-name { font: 700 12px/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: hsl(var(--who-h, 174) 60% var(--fp-who-l)); }
-.fp-say-text { font-size: 17px; line-height: 1.5; text-wrap: pretty; min-height: 1.5em; }
+.fp-say-text { font-size: 17px; line-height: 1.5; text-wrap: pretty; min-height: 1.5em; white-space: pre-line; max-height: 52vh; overflow-y: auto; }
 .fp-say-rest { visibility: hidden; }
 .fp-say-more { grid-column: 2; justify-self: end; display: inline-flex; align-items: center; gap: 6px; font: 600 12px var(--mono); color: var(--fp-muted); }
 .fp-say:not(.typing) .fp-say-more { animation: fp-nudge 1.6s ease-in-out infinite; color: var(--accent); }
