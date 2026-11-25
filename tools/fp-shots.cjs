@@ -177,6 +177,7 @@ const WEEK = ["night-shift", "kitchen-floor", "basement-stairs"];
     let pickShot = false;
     const regionFindings = def.findings.filter((x) => x.region);
     for (const f of regionFindings) {
+      await dismiss(); // a finding can make the mentor speak (the basement-stairs timeline flag)
       const want = f.pose ?? "supine";
       if (want !== pose) {
         await page.keyboard.press("t");

@@ -156,6 +156,9 @@ export async function startGame(p: GamePorts): Promise<void> {
         const f = def.findings.find((x) => x.id === e.finding);
         hud.toast(`New finding: ${f?.label}. ${f?.text ?? ""}`);
         audio.sfx("paper");
+        // Scene findings tell the story when they are looked at; exam and lab findings tell it here,
+        // which is what lets the mentor flag the basement-stairs timeline.
+        if (f && f.procedure !== SCENE_PROCEDURE) void tell({ kind: "finding", caseId: def.id, finding: f.id });
       }
       if (e.type === "nothing-new") hud.toast(`Nothing more to find at the ${e.region.replace("-", " ")}.`);
       if (e.type === "ran") {
@@ -163,6 +166,7 @@ export async function startGame(p: GamePorts): Promise<void> {
         if (e.procedure !== SCENE_PROCEDURE) hud.toast(`${pr?.name} done.${e.revealed.length ? ` ${e.revealed.length} new finding${e.revealed.length > 1 ? "s" : ""} in your notebook.` : ""}`);
         audio.sfx("beep");
         void tell({ kind: "procedure", caseId: def.id, procedure: e.procedure });
+        if (e.procedure !== SCENE_PROCEDURE) for (const id of e.revealed) void tell({ kind: "finding", caseId: def.id, finding: id });
       }
       if (e.type === "signed") finishCase(def, e.score);
     }
@@ -572,7 +576,7 @@ export async function startGame(p: GamePorts): Promise<void> {
     const resolved = story.resolveText(storyState, id, save.active);
     const t = story.readText(resolved);
     audio.sfx("paper");
-    if (t) await say([{ who: "narrator", text: `${t.title}. ${t.body}` }]);
+    if (t) await say([{ who: "narrator", text: `${t.title}\n\n${t.body}` }]);
     else hud.toast(id === "front-door" ? "Not yet. The shift isn't over." : "Nothing you need right now.");
     await tell({ kind: "read", text: id });
   }
