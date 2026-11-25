@@ -1,0 +1,223 @@
+{
+ "id": "scene-basement-stairs",
+ "name": "Ortiz house — basement, 23:10",
+ "caseId": "basement-stairs",
+ "walls": [
+  [0, 0, 9, 0.12],
+  [0, 6.88, 2.2, 7],
+  [3.1, 6.88, 9, 7],
+  [0, 0, 0.12, 7],
+  [8.88, 0, 9, 7],
+  [5.94, 0.12, 6.06, 2],
+  [5.94, 2.9, 6.06, 4.6],
+  [5.94, 5.5, 6.06, 6.88],
+  [6.06, 3.44, 8.88, 3.56]
+ ],
+ "bounds": [0, 0, 9, 7],
+ "ceiling": 2.3,
+ "floor": "dark",
+ "wall": "light",
+ "props": [
+  {
+   "id": "front-door",
+   "kind": "door",
+   "at": [2.65, 0, 6.97],
+   "size": [0.9, 2.05, 0.05],
+   "color": "wood",
+   "solid": false
+  },
+  {
+   "id": "stairs",
+   "kind": "stairs",
+   "at": [0.62, 0, 1.55],
+   "size": [1, 2.2, 2.86],
+   "color": "wood"
+  },
+  {
+   "id": "stair-rail",
+   "kind": "rail",
+   "at": [1.15, 0, 1.55],
+   "size": [0.05, 0.9, 2.86],
+   "color": "wood"
+  },
+  {
+   "id": "body",
+   "kind": "body",
+   "at": [0.75, 0, 4.03],
+   "size": [0.55, 0.22, 1.75],
+   "color": "light",
+   "solid": true
+  },
+  {
+   "id": "workbench",
+   "kind": "table",
+   "at": [3.1, 0, 0.47],
+   "size": [1.8, 0.9, 0.7],
+   "color": "wood"
+  },
+  {
+   "id": "tool-board",
+   "kind": "board",
+   "at": [3.1, 1.1, 0.15],
+   "size": [1.6, 0.8, 0.05],
+   "color": "dark",
+   "solid": false
+  },
+  {
+   "id": "shelf",
+   "kind": "shelf",
+   "at": [5.6, 0, 0.7],
+   "size": [0.5, 1.8, 1.1],
+   "color": "steel"
+  },
+  {
+   "id": "water-heater",
+   "kind": "cabinet",
+   "at": [5.55, 0, 2.6],
+   "size": [0.6, 1.5, 0.6],
+   "color": "steel"
+  },
+  {
+   "id": "sofa",
+   "kind": "sofa",
+   "at": [4.2, 0, 4.5],
+   "size": [1.9, 0.85, 0.85],
+   "color": "fabric"
+  },
+  {
+   "id": "rec-rug",
+   "kind": "rug",
+   "at": [4.2, 0, 5.6],
+   "size": [2.2, 0.01, 1.5],
+   "color": "fabric"
+  },
+  {
+   "id": "side-table",
+   "kind": "table",
+   "at": [2.85, 0, 4.5],
+   "size": [0.5, 0.55, 0.5],
+   "color": "wood"
+  },
+  {
+   "id": "cordless-phone",
+   "kind": "phone",
+   "at": [2.85, 0.55, 4.5],
+   "size": [0.06, 0.18, 0.05],
+   "color": "dark",
+   "solid": false
+  },
+  {
+   "id": "rec-lamp",
+   "kind": "lamp",
+   "at": [5.6, 0, 6.5],
+   "size": [0.3, 1.5, 0.3],
+   "color": "warm"
+  },
+  {
+   "id": "boxes",
+   "kind": "box",
+   "at": [1, 0, 6.4],
+   "size": [1.2, 0.7, 0.8],
+   "color": "paper"
+  },
+  {
+   "id": "washer",
+   "kind": "box",
+   "at": [7, 0, 0.47],
+   "size": [0.65, 0.9, 0.65],
+   "color": "light"
+  },
+  {
+   "id": "dryer",
+   "kind": "box",
+   "at": [7.75, 0, 0.47],
+   "size": [0.65, 0.9, 0.65],
+   "color": "light"
+  },
+  {
+   "id": "laundry-sink",
+   "kind": "sink",
+   "at": [8.5, 0, 0.45],
+   "size": [0.6, 0.9, 0.55],
+   "color": "light"
+  },
+  {
+   "id": "laundry-shelf",
+   "kind": "shelf",
+   "at": [8.65, 0, 2.4],
+   "size": [0.4, 1.8, 1.2],
+   "color": "wood"
+  },
+  {
+   "id": "storage-shelf-1",
+   "kind": "shelf",
+   "at": [8.6, 0, 5.2],
+   "size": [0.5, 1.9, 2.4],
+   "color": "steel"
+  },
+  {
+   "id": "storage-boxes",
+   "kind": "box",
+   "at": [6.8, 0, 6.3],
+   "size": [1, 0.9, 0.9],
+   "color": "paper"
+  }
+ ],
+ "interactables": [
+  {
+   "id": "front-door",
+   "at": [2.65, 1.1, 6.9],
+   "label": "Drive back to the office",
+   "action": {
+    "kind": "door",
+    "to": "office",
+    "spawn": "garage"
+   }
+  },
+  {
+   "id": "steps",
+   "at": [0.82, 0.8, 2.38],
+   "label": "Examine the stairs and walls",
+   "action": {
+    "kind": "finding",
+    "finding": "steps"
+   },
+   "caseId": "basement-stairs"
+  },
+  {
+   "id": "caller-talk",
+   "at": [2.2, 1.6, 5.6],
+   "label": "Talk to his wife",
+   "action": {
+    "kind": "talk",
+    "npc": "caller"
+   },
+   "caseId": "basement-stairs"
+  },
+  {
+   "id": "call",
+   "at": [2.85, 0.65, 4.5],
+   "label": "Note when she says he fell and when she called",
+   "action": {
+    "kind": "finding",
+    "finding": "call"
+   },
+   "caseId": "basement-stairs"
+  }
+ ],
+ "spawns": {
+  "start": {
+   "x": 2.65,
+   "z": 6.25,
+   "yaw": 0
+  }
+ },
+ "lights": [
+  [1.6, 2.2, 3.6, 0.55],
+  [3.6, 2.2, 1.2, 0.4],
+  [4.2, 2.2, 5, 0.4],
+  [7.5, 2.2, 1.7, 0.25],
+  [7.5, 2.2, 5.2, 0.2]
+ ],
+ "ambience": "basement"
+}

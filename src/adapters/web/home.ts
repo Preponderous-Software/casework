@@ -20,12 +20,14 @@ export function startHome(root: HTMLElement, ports: HomePorts, notice?: string):
     root.innerHTML = "";
     const hero = el("header", { class: "hero" });
     hero.append(el("h1", {}, "Casework"), el("p", {}, "You're the medical examiner. Examine the body, learn what each finding means as you need it, and sign the death certificate."), el("p", { class: "fine" }, "Content note: these cases describe deaths, including a violent one, in clinical words. There are no graphic images."));
+    const play = el("a", { class: "btn go fp-play", href: "play.html", id: "play-fp" }, "Play in first person");
+    hero.append(play, el("p", { class: "fine" }, "Walk the county medical examiner's office, ride out to the scene, examine the body and sign the certificate. The classic case pages and the drill are below."));
     root.append(hero);
     if (notice) root.append(el("p", { class: "notice", role: "status" }, notice));
 
     // Cases
     const cs = el("section", { class: "card" });
-    cs.append(el("p", { class: "eyebrow" }, "Cases"));
+    cs.append(el("p", { class: "eyebrow" }, "Cases (classic mode)"));
     const list = el("div", { class: "cases" });
     ports.pack.cases.forEach((c, i) => {
       const rec = profile.records[`case:${c.id}`];

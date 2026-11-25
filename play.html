@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Casework: first person</title>
+<meta name="description" content="Casework in first person: walk the county medical examiner's office, visit the scene, examine the body and sign the certificate.">
+<script>try{var t=localStorage.getItem("casework.theme")||"dark";if(t!=="system")document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="dark";}</script>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="fp.css">
+<style>
+  /* Engine-lane overlays (the HUD, menus and touch controls are styled in fp.css). */
+  :root { --sk-loader-bg: #0b0f14; --sk-loader-accent: #5bbdcc; }
+  #surface { position: absolute; inset: 0; z-index: 1; cursor: crosshair; }
+  .fp-fade { position: absolute; inset: 0; z-index: 30; background: #000; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .fp-fade.on { opacity: 1; }
+  .fp-reduced .fp-fade { transition: none; }
+  .fp-panel-back { position: absolute; inset: 0; z-index: 15; background: rgb(0 0 0 / 0.45); display: grid; place-items: center; padding: max(12px, env(safe-area-inset-top, 0px)) 12px max(12px, env(safe-area-inset-bottom, 0px)); }
+  .fp-panel { width: min(760px, 100%); max-height: 100%; overflow-y: auto; overscroll-behavior: contain; background: var(--bg); color: var(--ink); border: 1px solid var(--rule); border-radius: 16px; padding: 16px; display: grid; gap: 14px; box-shadow: 0 20px 60px rgb(0 0 0 / 0.5); user-select: text; -webkit-user-select: text; }
+  .fp-panel-head { display: flex; justify-content: space-between; align-items: start; gap: 12px; position: sticky; top: -16px; background: var(--bg); padding: 4px 0 8px; z-index: 1; }
+  .fp-panel-head h2 { margin: 2px 0 0; font-size: 1.3rem; }
+  .fp-panel-body { display: grid; gap: 14px; }
+  .fp-case-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+  .fp-case h3 { margin: 4px 0; }
+  .fp-procs { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font: 0.88rem var(--mono); color: var(--muted); }
+  .fp-procs li.done { color: var(--ok); }
+  .fp-shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .fp-exambar { position: absolute; left: 50%; bottom: max(14px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 13; width: min(720px, calc(100% - 24px)); display: grid; gap: 8px; padding: 10px; border-radius: 14px; background: rgb(12 16 22 / 0.78); color: #e7eaf0; backdrop-filter: blur(6px); }
+  .fp-exambar .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .fp-exambar .btn { min-height: 40px; padding: 8px 12px; }
+  .fp-exambar .btn.ghost { color: #8fe0d6; border-color: #4fc2b9; }
+  .fp-regions { display: flex; flex-wrap: wrap; gap: 6px; }
+  .fp-region { font: 600 0.85rem var(--font); padding: 6px 10px; min-height: 36px; border-radius: 8px; border: 1px solid #3a4656; background: #1a202b; color: #e7eaf0; cursor: pointer; }
+  .fp-region.found { border-color: #6fd08e; color: #6fd08e; }
+  .fp-fallback { position: absolute; inset: 0; display: grid; place-content: center; gap: 8px; padding: 24px; text-align: center; color: #e7eaf0; }
+  @media (max-width: 560px) {
+    .fp-exambar { padding: 8px; gap: 6px; }
+    .fp-exambar .btn { min-height: 36px; padding: 6px 10px; font-size: 0.9rem; }
+    .fp-region { font-size: 0.78rem; min-height: 32px; padding: 4px 8px; }
+  }
+  html[data-fp-input=touch] .fp-exambar { bottom: auto; top: max(10px, env(safe-area-inset-top, 0px)); }
+</style>
+</head>
+<body>
+<div id="game" class="fp-root">
+  <canvas id="view" tabindex="-1" aria-label="First-person view of the medical examiner's office"></canvas>
+  <div id="surface" aria-hidden="true"></div>
+</div>
+<script src="engine/strata-loader.js"></script>
+<script src="engine/strata-kit.js"></script>
+<script type="module" src="dist/adapters/fp/main.js"></script>
+<noscript><p>Casework needs JavaScript.</p></noscript>
+</body>
+</html>

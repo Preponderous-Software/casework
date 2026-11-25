@@ -1,0 +1,98 @@
+{
+  "welcome-letter": {
+    "title": "A letter with your name on it",
+    "body": "Dear Doctor,\n\nWelcome to the Alder County Medical Examiner's Office. Today is for finding your way around. From tomorrow you will work one case a day alongside me.\n\nFor every person who comes through our doors we answer three questions: when they died, what caused their death, and the manner of death. Families, police and courts rely on what we write, so we write only what the evidence supports, in plain words.\n\nYour desk is in the office off the corridor, with the reference shelf beside it. When you've settled in, come and find me in the exam room.\n\nDr. Miriam Achterberg\nSenior Forensic Pathologist"
+  },
+  "intake-board": {
+    "title": "Intake board",
+    "body": "INTAKE: ALDER COUNTY MEDICAL EXAMINER\n\nNew cases are posted here as they come in, one folder each. Take the folder for the case you are working: it holds the intake, what the caller said, and the investigator's notes.\n\nOrder of work: the scene, the external exam, the autopsy, then any test that could change the answer. Sign at your desk terminal when every line of the certificate rests on evidence.\n\nOn call this week: R. Delgado, investigator. Lab: P. Natarajan."
+  },
+  "poster-time-of-death": {
+    "title": "Poster: Time of death, what the body tells you",
+    "body": "COOLING (algor mortis). A clothed adult in a room near 70 °F loses roughly 1.5 °F an hour, often after a short plateau. A cold room, little clothing or moving air speed it up; warm rooms and heavy clothing slow it down. Treat the answer as a centre with hours either side.\n\nSTIFFENING (rigor mortis). Noticed first in small muscles such as the jaw, then the arms, then the legs. Usually complete by about 12 hours, and it passes off over the next day or two. Heat speeds it; cold slows it.\n\nSETTLING (livor mortis). Blood pools in the lowest parts of the body and shows within half an hour to a few hours. It blanches under thumb pressure until it fixes, at roughly 8 to 12 hours. Livor that doesn't match how the body lay means it was moved.\n\nSTOMACH. A meal usually leaves the stomach within about 2 to 6 hours, but this varies a lot. A rough clue at best.\n\nPEOPLE. The last time someone saw or spoke to the person sets the earliest possible time. Put what the body says beside what people say. When they disagree, find out why."
+  },
+  "van-logbook": {
+    "title": "Van 2 logbook",
+    "body": "VAN 2: LOGBOOK\n\nFri 16:20  Transport, county hospital to office. Fuel 3/4. R.D.\nFri 21:40  Scene attendance, Linden Road. Back 23:15. R.D.\nSat        Not used.\nSun 10:05  Stretcher straps replaced. R.D.\nMon 07:30  Vehicle check: tires, lights, kit, camera batteries. All good. R.D.\n\nNew doctor starts today. Show them where the gloves are. M.A."
+  },
+  "desk-note-day1": {
+    "title": "A note on your desk",
+    "body": "Good first day. Go home, eat something, sleep.\n\nRay takes the early calls this week and will phone the desk if anything comes in overnight. Check your voicemail when you get in.\n\nM.A."
+  },
+  "voicemail-day2": {
+    "caseId": "night-shift",
+    "title": "Voicemail, Tuesday 07:55",
+    "body": "\"Morning, Doc, it's Ray. Call came in at 07:48. A neighbor found a man in bed at 07:40, on Cutler Lane: Marcus Hale, 58. The neighbor has a key and let himself in when Mr. Hale didn't answer the door. Patrol's there and found no sign of a break-in. Folder's on the intake board. I'll have the van warm.\""
+  },
+  "desk-note-day2": {
+    "caseId": "night-shift",
+    "title": "A note on your desk",
+    "body": "Doc,\n\nVan's restocked for tomorrow. Mr. Hale's niece came by this afternoon to collect his things. She asked me to thank whoever looked after him. That's you.\n\nRay"
+  },
+  "voicemail-day3": {
+    "caseId": "kitchen-floor",
+    "title": "Voicemail, Wednesday 09:12",
+    "body": "\"Doc, Ray. Call came in at 09:06. Eleanor Voss, 81, found on her kitchen floor at 09:00 by her daughter, on Juniper Street. She lived alone and managed fine on her own. Her daughter came by because she didn't answer the phone this morning. The daughter is still at the house. Folder's on the board.\""
+  },
+  "desk-note-day3": {
+    "caseId": "kitchen-floor",
+    "title": "A note on your desk",
+    "body": "Today's results are filed. I'm in early tomorrow, so if you need anything run, bring it straight down to the lab.\n\nThere's lemon cake in the break room. House rule: nobody goes home without a slice.\n\nPriya"
+  },
+  "voicemail-day4": {
+    "caseId": "basement-stairs",
+    "title": "Voicemail, Wednesday 23:41",
+    "body": "\"Doc, it's Ray, late. A call came in at 23:05 from a woman on Birch Hollow Road. Her husband, Tomás Ortiz, 45. Responders found him at the bottom of the basement stairs at 23:10. She says he fell about an hour before she called. Police are attending, which is routine when nobody saw what happened, and they'll hold the house for us in the morning. Get some sleep.\""
+  },
+  "desk-note-day4": {
+    "caseId": "basement-stairs",
+    "title": "A note on your desk",
+    "body": "Today was the hard one, and you did it carefully.\n\nRemember what the certificate is: a medical finding, written so others can rely on it. What happens next belongs to the police and the courts, not to us.\n\nGo home. Rest. Friday is for paperwork and coffee.\n\nM.A."
+  },
+  "case-night-shift": {
+    "caseId": "night-shift",
+    "title": "Case folder: Night shift",
+    "body": "Decedent: Marcus Hale, 58\nAddress: Cutler Lane\nFound: 07:40, in bed, by a neighbor\n\nIntake: Adult male, 58, found in bed at 07:40 by a neighbor.\n\nContext: The neighbor had a key and came to check when he didn't answer the door. No signs of a break-in.\n\nInvestigator: R. Delgado. Scene held for the examiner."
+  },
+  "case-kitchen-floor": {
+    "caseId": "kitchen-floor",
+    "title": "Case folder: The kitchen floor",
+    "body": "Decedent: Eleanor Voss, 81\nAddress: Juniper Street\nFound: 09:00, on the kitchen floor, by her daughter\n\nIntake: Adult female, 81, found on her kitchen floor at 09:00 by her daughter.\n\nContext: She lived alone and was independent. Her daughter came by because she didn't answer the phone that morning.\n\nInvestigator: R. Delgado. Scene held for the examiner."
+  },
+  "case-basement-stairs": {
+    "caseId": "basement-stairs",
+    "title": "Case folder: The basement stairs",
+    "body": "Decedent: Tomás Ortiz, 45\nAddress: Birch Hollow Road\nFound: 23:10, at the bottom of the basement stairs\n\nIntake: Adult male, 45, found at the bottom of the basement stairs at 23:10.\n\nContext: His wife called for help, saying he fell down the stairs about an hour earlier.\n\nNote: This case involves a violent death. Findings are described clinically.\n\nInvestigator: R. Delgado. Police attending. Scene held for the examiner."
+  },
+  "effects-night-shift": {
+    "caseId": "night-shift",
+    "title": "Personal effects: Marcus Hale",
+    "body": "Received with the decedent:\n\n- Wristwatch, steel band, working\n- Reading glasses in a case\n- House keys on a ring with a softball key fob\n- Wallet: driver's license, library card, one folded team schedule (Cutler Cubs, under-12s)\n\nClothing: flannel pajamas.\n\nTo be released to next of kin, by arrangement with Investigator Delgado."
+  },
+  "effects-kitchen-floor": {
+    "caseId": "kitchen-floor",
+    "title": "Personal effects: Eleanor Voss",
+    "body": "Received with the decedent:\n\n- Reading glasses on a beaded chain\n- Wristwatch, leather strap, working\n- Wedding ring, yellow metal\n- In the cardigan pocket: a shopping list (eggs, oranges, stamps, birthday card for Ruth)\n\nClothing: cardigan, blouse, skirt, slippers.\n\nTo be released to her daughter, Ruth Alder."
+  },
+  "effects-basement-stairs": {
+    "caseId": "basement-stairs",
+    "title": "Personal effects: Tomás Ortiz",
+    "body": "Received with the decedent:\n\n- Wedding band, yellow metal\n- Wristwatch, black strap\n- Mobile phone, keys\n- In the shirt pocket: a red marking pen and a folded seating plan for Room 14\n\nClothing: collared shirt, trousers, socks. Bagged and held, as is routine for any death the police are attending.\n\nRelease to next of kin pending."
+  },
+  "desk-note": {
+    "title": "Your desk",
+    "body": "A tidy desk, a terminal, a lamp, and a pad of yellow notes. Nothing new on it right now."
+  },
+  "voicemail": {
+    "title": "Desk phone",
+    "body": "No new messages."
+  },
+  "case-folder": {
+    "title": "Case folders",
+    "body": "No case is open. Folders are on the intake board in the lobby."
+  },
+  "effects": {
+    "title": "Personal effects",
+    "body": "The effects tray is empty. Each person's belongings are listed and kept safe while their case is open."
+  }
+}

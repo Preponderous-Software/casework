@@ -1,0 +1,638 @@
+{
+  "id": "first-week",
+  "version": 1,
+  "title": "First week",
+  "office": "Alder County Medical Examiner's Office",
+  "days": [
+    {
+      "day": 1,
+      "name": "Monday",
+      "caseId": null
+    },
+    {
+      "day": 2,
+      "name": "Tuesday",
+      "caseId": "night-shift"
+    },
+    {
+      "day": 3,
+      "name": "Wednesday",
+      "caseId": "kitchen-floor"
+    },
+    {
+      "day": 4,
+      "name": "Thursday",
+      "caseId": "basement-stairs"
+    },
+    {
+      "day": 5,
+      "name": "Friday",
+      "caseId": null
+    }
+  ],
+  "cases": {
+    "night-shift": {
+      "name": "Marcus Hale",
+      "object": "him",
+      "witness": "neighbor",
+      "witnessFinding": "neighbor",
+      "procedures": {
+        "scene": [
+          "window",
+          "neighbor",
+          "pills"
+        ],
+        "external": [
+          "temp",
+          "rigor",
+          "livor",
+          "head"
+        ],
+        "autopsy": [
+          "heart",
+          "lungs",
+          "stomach"
+        ],
+        "tox": [
+          "tox"
+        ]
+      }
+    },
+    "kitchen-floor": {
+      "name": "Eleanor Voss",
+      "object": "her",
+      "witness": "daughter",
+      "witnessFinding": "phone",
+      "procedures": {
+        "scene": [
+          "phone",
+          "rug",
+          "warfarin"
+        ],
+        "external": [
+          "temp",
+          "rigor",
+          "livor",
+          "scalp",
+          "arms"
+        ],
+        "autopsy": [
+          "brain",
+          "heart"
+        ],
+        "tox": [
+          "tox"
+        ]
+      }
+    },
+    "basement-stairs": {
+      "name": "Tomás Ortiz",
+      "object": "him",
+      "witness": "caller",
+      "witnessFinding": "call",
+      "procedures": {
+        "scene": [
+          "call",
+          "steps"
+        ],
+        "external": [
+          "temp",
+          "rigor",
+          "livor",
+          "scalp",
+          "arms"
+        ],
+        "autopsy": [
+          "skull",
+          "stomach"
+        ],
+        "tox": [
+          "tox"
+        ],
+        "xray": [
+          "xray"
+        ]
+      }
+    }
+  },
+  "say": {
+    "enter:office@1": [
+      [
+        "narrator",
+        "Monday, 08:00. The Alder County Medical Examiner's Office. Your first day."
+      ],
+      [
+        "narrator",
+        "A letter with your name on it is waiting at the front desk."
+      ]
+    ],
+    "day:2": [
+      [
+        "narrator",
+        "Tuesday, 07:55. The light on your desk phone is blinking."
+      ]
+    ],
+    "day:3": [
+      [
+        "narrator",
+        "Wednesday, 09:12. The desk phone is blinking again."
+      ]
+    ],
+    "day:4": [
+      [
+        "narrator",
+        "Thursday, 07:30. A message came in late last night, after you'd gone home."
+      ]
+    ],
+    "day:5": [
+      [
+        "narrator",
+        "Friday. The intake board is quiet for once. Dr. Achterberg has the coffee on."
+      ]
+    ],
+    "read:desk-note-day1": [
+      [
+        "narrator",
+        "You switch off the desk lamp and head home."
+      ]
+    ],
+    "read:desk-note-day2": [
+      [
+        "narrator",
+        "You fold Ray's note into your pocket and head home."
+      ]
+    ],
+    "read:desk-note-day3": [
+      [
+        "narrator",
+        "You take a slice of lemon cake, as instructed, and head home."
+      ]
+    ],
+    "read:desk-note-day4": [
+      [
+        "narrator",
+        "You sit for a moment with the lamp on. Then you switch it off and head home."
+      ]
+    ],
+    "case-started:night-shift": [
+      [
+        "investigator",
+        "That's the one. Van's in the garage when you're ready, Doc."
+      ]
+    ],
+    "case-started:kitchen-floor": [
+      [
+        "investigator",
+        "Juniper Street. Her daughter's waiting at the house. Van's in the garage."
+      ]
+    ],
+    "case-started:basement-stairs": [
+      [
+        "investigator",
+        "Police have held the house since last night. Van's in the garage."
+      ]
+    ],
+    "procedure:night-shift:scene": [
+      [
+        "investigator",
+        "Patrol was first in. They'll tell you what they touched, but ask anyway. Always ask."
+      ]
+    ],
+    "procedure:kitchen-floor:scene": [
+      [
+        "investigator",
+        "The daughter is Ruth. She found her mother this morning. Go gently with her."
+      ]
+    ],
+    "procedure:basement-stairs:scene": [
+      [
+        "investigator",
+        "His wife is in the front room with an officer. You can speak with her when you're ready."
+      ],
+      [
+        "investigator",
+        "Look at everything once before you decide anything. Same as any scene."
+      ]
+    ],
+    "procedure:*:external": [
+      [
+        "mentor",
+        "Head to toe, region by region. Say what you see, not what you think it means. Meaning comes later."
+      ]
+    ],
+    "procedure:*:autopsy": [
+      [
+        "mentor",
+        "I'll assist. Take your time; nobody hurries in here."
+      ]
+    ],
+    "procedure:*:tox": [
+      [
+        "tech",
+        "Sample's in. Rush run, so you'll have it within the hour."
+      ]
+    ],
+    "procedure:*:xray": [
+      [
+        "tech",
+        "Skeletal survey's set up. Every bone, old breaks and new."
+      ]
+    ],
+    "enter:scene-night-shift": [
+      [
+        "narrator",
+        "Cutler Lane. A small, neat house. The bedroom is at the back."
+      ]
+    ],
+    "enter:scene-kitchen-floor": [
+      [
+        "narrator",
+        "Juniper Street. A bright kitchen, a kettle, a calendar full of handwriting."
+      ]
+    ],
+    "enter:scene-basement-stairs": [
+      [
+        "narrator",
+        "Birch Hollow Road. The basement door stands open at the end of the hall."
+      ]
+    ],
+    "turn:basement-stairs": [
+      [
+        "mentor",
+        "Before you go on. What time did Mrs. Ortiz say he fell?"
+      ],
+      [
+        "you",
+        "About an hour before she called. She called at 23:05."
+      ],
+      [
+        "mentor",
+        "Then read me what you've just written down, and ask yourself whether a body does that in an hour."
+      ],
+      [
+        "mentor",
+        "Work out a window from the body alone. Then set her account beside it. When the two disagree, we don't pick a side; we find out why."
+      ]
+    ],
+    "signed:night-shift": [
+      [
+        "narrator",
+        "You sign. Marcus Hale, 58, a retired bus mechanic who coached his niece's softball team. The certificate is the last official word on his life."
+      ]
+    ],
+    "signed:kitchen-floor": [
+      [
+        "narrator",
+        "You sign. Eleanor Voss, 81, a former school librarian who still walked to the market every morning. The certificate is the last official word on her life."
+      ]
+    ],
+    "signed:basement-stairs": [
+      [
+        "narrator",
+        "You sign. Tomás Ortiz, 45, a high-school chemistry teacher. The certificate is the last official word on his life, and others will rely on it."
+      ]
+    ]
+  },
+  "dialogue": {
+    "mentor": {
+      "day1": [
+        [
+          "mentor",
+          "You must be our new examiner. Miriam Achterberg. Welcome."
+        ],
+        [
+          "mentor",
+          "Three rules for the week. Look before you decide. Write what you see in plain words. And never let one clue outvote all the others."
+        ],
+        [
+          "mentor",
+          "Ray drives the van and runs our scenes; he's in the garage. Priya runs the lab. Go and say hello to both of them."
+        ]
+      ],
+      "day1:tour": [
+        [
+          "mentor",
+          "Ray's in the garage and Priya's in the lab. And read the poster by the exam table. It's older than Priya, and it's still right."
+        ]
+      ],
+      "day1:evening": [
+        [
+          "mentor",
+          "That's enough for a first day. I left you a note on your desk. Then go home."
+        ]
+      ],
+      "morning": [
+        [
+          "mentor",
+          "Today's folder is on the intake board. Take it when you're ready."
+        ]
+      ],
+      "case:night-shift": [
+        [
+          "mentor",
+          "Start where he was found. The room matters as much as the body: what it was like overnight, not just when we arrived."
+        ]
+      ],
+      "case:kitchen-floor": [
+        [
+          "mentor",
+          "Eighty-one, and living on her own. Find out what she took every day, and why. Older bodies keep their histories in the medicine cabinet."
+        ]
+      ],
+      "case:basement-stairs": [
+        [
+          "mentor",
+          "Police are involved because nobody saw what happened. That's routine. Our job is exactly what it was on Tuesday."
+        ]
+      ],
+      "case:basement-stairs:flagged": [
+        [
+          "mentor",
+          "Keep going. The body gives you a window; the account gives you a time. Put both on the certificate's evidence and see where they land."
+        ]
+      ],
+      "evening": [
+        [
+          "mentor",
+          "Go home. There's a note on your desk first."
+        ]
+      ],
+      "default": [
+        [
+          "mentor",
+          "Questions are free in this office. Wrong certificates aren't."
+        ]
+      ]
+    },
+    "investigator": {
+      "day1": [
+        [
+          "investigator",
+          "Ray Delgado, death investigator. I drive the van, I talk to families, and I photograph everything twice."
+        ],
+        [
+          "investigator",
+          "When we go out, the scene is yours to look at, but nothing gets moved until it's photographed."
+        ],
+        [
+          "investigator",
+          "Logbook's on the dash if you ever want to know where I've been."
+        ]
+      ],
+      "morning": [
+        [
+          "investigator",
+          "Van's warm. Grab the folder off the board and we'll go."
+        ]
+      ],
+      "case:night-shift": [
+        [
+          "investigator",
+          "The neighbor's name is Walt. They looked out for each other, those two."
+        ]
+      ],
+      "case:kitchen-floor": [
+        [
+          "investigator",
+          "Her daughter rings her most nights, she says. Families notice when a routine breaks."
+        ]
+      ],
+      "case:basement-stairs": [
+        [
+          "investigator",
+          "Officers took a statement last night. Ours is separate. We write down what she tells us, word for word."
+        ]
+      ],
+      "debrief": [
+        [
+          "investigator",
+          "Doc Achterberg reads every certificate. Mine too, back when I filled them in."
+        ]
+      ],
+      "default": [
+        [
+          "investigator",
+          "Van's fueled. Kit's stocked. Quiet's good, in this job."
+        ]
+      ]
+    },
+    "tech": {
+      "day1": [
+        [
+          "tech",
+          "Priya Natarajan, lab and toxicology. You send me blood, I tell you what's in it and how much."
+        ],
+        [
+          "tech",
+          "A rush run costs the county real money. Order it when it could change your certificate, which is more often than people think."
+        ]
+      ],
+      "case:night-shift": [
+        [
+          "tech",
+          "If he was on a prescription, the level tells you whether he took it as directed. Too little, too much, or just right."
+        ]
+      ],
+      "case:kitchen-floor": [
+        [
+          "tech",
+          "Anything in the medicine cabinet, bring me the name. I'll know what level to look for."
+        ]
+      ],
+      "case:basement-stairs": [
+        [
+          "tech",
+          "Alcohol's the first thing people ask about with a fall. The number will tell you whether it matters."
+        ]
+      ],
+      "default": [
+        [
+          "tech",
+          "Centrifuge is humming, so all is well. Need anything run?"
+        ]
+      ]
+    },
+    "neighbor": {
+      "case": [
+        [
+          "neighbor",
+          "I'm Walt, from next door. I've got his key; we look out for each other."
+        ],
+        [
+          "neighbor",
+          "We ate dinner together at mine, around ten last night. Thirty years on night shifts at the bus depot, so ten o'clock was dinnertime for him."
+        ],
+        [
+          "neighbor",
+          "He went home at a quarter to eleven. Said he was a little tired. That's all. A little tired."
+        ],
+        [
+          "neighbor",
+          "This morning he didn't answer the door, so I let myself in. That was twenty to eight. He was in bed."
+        ]
+      ],
+      "default": [
+        [
+          "neighbor",
+          "Look after him, Doctor."
+        ]
+      ]
+    },
+    "daughter": {
+      "case": [
+        [
+          "daughter",
+          "I'm Ruth. Her daughter."
+        ],
+        [
+          "daughter",
+          "I phoned her at half past eight last night, like most nights. She told me about the market. She sounded well. Completely herself."
+        ],
+        [
+          "daughter",
+          "This morning she didn't answer the phone. She always answers. So I drove over, and I found her here at nine."
+        ],
+        [
+          "daughter",
+          "Her medicines are in the cabinet over the sink, if you need them."
+        ]
+      ],
+      "default": [
+        [
+          "daughter",
+          "Thank you for taking care with her."
+        ]
+      ]
+    },
+    "caller": {
+      "case": [
+        [
+          "caller",
+          "I'm Lena. His wife."
+        ],
+        [
+          "caller",
+          "He fell down the stairs. About an hour before I called."
+        ],
+        [
+          "caller",
+          "I called at five past eleven."
+        ],
+        [
+          "narrator",
+          "She looks toward the basement door, then away."
+        ]
+      ],
+      "default": [
+        [
+          "caller",
+          "Please just tell me what happened to him."
+        ]
+      ]
+    }
+  },
+  "review": {
+    "intro": [
+      [
+        "mentor",
+        "I've read your certificate for {name}. {score} out of {max}."
+      ]
+    ],
+    "tiers": [
+      {
+        "min": 11,
+        "lines": [
+          [
+            "mentor",
+            "This is clean. Time, cause and manner, each one tied to evidence. I'd sign it myself."
+          ]
+        ]
+      },
+      {
+        "min": 8,
+        "lines": [
+          [
+            "mentor",
+            "Good work. A couple of places where your evidence and your boxes don't quite line up. The review on the terminal shows which."
+          ]
+        ]
+      },
+      {
+        "min": 5,
+        "lines": [
+          [
+            "mentor",
+            "It's a start. Parts of this rest on less than they should. Go back through the review before tomorrow."
+          ]
+        ]
+      },
+      {
+        "min": 0,
+        "lines": [
+          [
+            "mentor",
+            "We'll go through this one together. That's what the first week is for. Nobody signs a perfect first certificate."
+          ]
+        ]
+      }
+    ],
+    "cases": {
+      "night-shift": [
+        [
+          "mentor",
+          "The thing I'd want you to take from Mr. Hale is the window. A room that was cold overnight cools a body faster than the 70 °F we measured, so the usual rate would have put his death too early."
+        ],
+        [
+          "mentor",
+          "He died of heart disease he didn't know was that severe. 'A little tired' after dinner was probably an early warning. That's a natural death, and it was still worth every step."
+        ]
+      ],
+      "kitchen-floor": [
+        [
+          "mentor",
+          "Mrs. Voss is about the warfarin. A fall most people walk away from can be fatal on a blood thinner."
+        ],
+        [
+          "mentor",
+          "Still an accident. The fall caused the injury; the medicine made the bleed worse, taken exactly as prescribed. One clue doesn't outvote the rest."
+        ]
+      ],
+      "basement-stairs": [
+        [
+          "mentor",
+          "Mr. Ortiz was the one this week was building to. The body said hours; the account said one. When they disagree that much, the body is usually the more reliable witness."
+        ],
+        [
+          "mentor",
+          "His injuries were on top of the head, with defense bruises on his forearms and no fractures from a tumble. Homicide on a certificate is a medical finding, not a verdict. What happens next is for the police and the courts."
+        ]
+      ]
+    },
+    "close": [
+      [
+        "mentor",
+        "Now go and read the note on your desk, and go home."
+      ]
+    ],
+    "replay": [
+      [
+        "mentor",
+        "Another look at an old case. {score} out of {max} this time. Practice is how examiners get good."
+      ]
+    ]
+  },
+  "endOfWeek": [
+    [
+      "mentor",
+      "That's your first week. {count} certificates, {total} out of {max} between them."
+    ],
+    [
+      "mentor",
+      "Marcus Hale, Eleanor Voss, Tomás Ortiz. Each of them got a careful answer. That's the job, and you did it."
+    ],
+    [
+      "mentor",
+      "The board fills up again on Monday. Until then, any of this week's folders is yours to work again."
+    ]
+  ]
+}

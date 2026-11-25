@@ -41,7 +41,7 @@ jobs:
         run: |
           site="$RUNNER_TEMP/site"
           mkdir -p "$site"
-          cp *.html styles.css "$site/"
+          cp *.html *.css "$site/"
           cp -r dist "$site/"
           [ -d engine ] && mkdir -p "$site/engine" && cp engine/*.js engine/*.wasm "$site/engine/" || true
           [ -d packs ] && cp -r packs "$site/" || true
