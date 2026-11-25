@@ -11,6 +11,41 @@ Nested loops:
 | Shift | 15–20 min | Short spaced review, then 2–3 cases against an 8-hour clock and a lab budget. Toxicology returns next shift, so "pending" is a real choice. |
 | Career | weeks | Accuracy builds reputation; reputation unlocks equipment; equipment adds procedures, findings and skills. |
 
+## First person
+
+The main way to play is now first person (`play.html`): you are the new examiner, walking a county
+office through a five-day first week. The world is a new way to drive the case reducer, not a new
+rule set: every interactable turns into a reducer command (take a case, run a procedure, examine a
+region, interpret, link, sign), so scoring, lessons and skills are exactly the classic pages'.
+
+![A desktop first-person view of the exam table: the faceless mannequin with the abdomen highlighted, the prompt Examine the abdomen, and the exam bar with Turn over, Step back and the body regions](media/fp-exam-desktop.png)
+
+| Layer | Where | Pure? |
+|---|---|---|
+| World: locations, walking, aiming, layout checks | `src/casework/world/` and `packs/forensics-core/world/` | yes |
+| Story: the week, objectives (the NEXT line), dialogue, things you read | `src/casework/story/` and `packs/forensics-core/story/` | yes |
+| Engine: renderer, input, panels, save | `src/adapters/fp/` | no (DOM, WebGL) |
+| Feel: HUD, menus, settings, touch and gamepad, procedural audio | `src/adapters/fp/ui/`, `src/adapters/fp/audio/`, `fp.css` | no |
+
+How the case loop maps onto the building:
+
+| Case step | Where you do it |
+|---|---|
+| Intake | The intake board in the lobby |
+| Scene investigation | The van in the garage, then the case's own walkable scene (witness and findings) |
+| External exam | The exam table: look at a region and examine it, turn the body over |
+| Autopsy, X-ray, toxicology | The autopsy station, the X-ray unit, the lab's analyzer |
+| Interpret, link, certify | The desk terminal in your office; lessons also on the reference shelf |
+| Debrief | The terminal, then the mentor's review in person |
+
+The full play guide, controls, saves, content files and how to add a scene are in
+[first-person.md](first-person.md).
+
+<p>
+<img src="media/fp-scene-night-shift-phone.png" alt="Phone view of the Night shift scene: the neighbor who found him, a faceless figure, talking in the dialogue box" width="220">
+<img src="media/fp-certificate-phone.png" alt="Phone view of the desk terminal certificate: the time-of-death evidence chart, window sliders and cause of death choices" width="220">
+</p>
+
 ## What the drill looks like
 
 The milestone-1 drill on a desktop browser: the evidence bars from four skills, their overlap (dashed),
@@ -37,6 +72,8 @@ After signing, the real time appears as a line and the debrief explains each bar
 |---|---|
 | Hosting | Standalone game on the arcade first. |
 | Exam view | 3D exam room (Strata) by default from 0.1; 2D body map fallback; text list for screen readers. |
+| Main mode | First person (`play.html`), with the classic case pages, drill and terminal kept. Mobile is first class: touch stick, drag to look, a use button. |
+| First-person tone | A faceless mannequin and figures, injuries in words, one respectful line about each person, a content note on the intake board. |
 | Stack | TypeScript core and web UI; Strata renders the exam room. |
 | Interpret on a phone | Tap to link an interpretation to a certificate line. No dragging. |
 | Core structure | Ports and adapters; pure reducer `(state, command) → (state, events)`; versioned snapshot saves. |
